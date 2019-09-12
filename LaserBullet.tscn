@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://LaserBullet.gd" type="Script" id=1]
+[ext_resource path="res://laser.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1.94669, 19.9759 )
+
+[node name="LaserBullet" type="Area2D" groups=[
+"bullet",
+]]
+script = ExtResource( 1 )
+
+[node name="laser" type="Sprite" parent="."]
+rotation = 1.5708
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.566965, -0.0809956 )
+shape = SubResource( 1 )
+
