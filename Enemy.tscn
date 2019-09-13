@@ -19,7 +19,11 @@ texture = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="mover" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
 
+[node name="Tween" type="Tween" parent="."]
+playback_process_mode = 0
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="timeout" from="mover" to="." method="_on_mover_timeout"]

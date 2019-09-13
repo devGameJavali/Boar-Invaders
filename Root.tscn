@@ -25,8 +25,7 @@ margin_right = 96.2011
 margin_bottom = 15.629
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 2.0
 autostart = true
-
 [connection signal="timeout" from="Spawner" to="." method="_on_Spawner_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

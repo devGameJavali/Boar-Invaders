@@ -18,4 +18,3 @@ scale = Vector2( 2.5, 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 1 )
-

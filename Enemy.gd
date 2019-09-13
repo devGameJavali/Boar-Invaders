@@ -1,15 +1,19 @@
 extends KinematicBody2D
-
-func _physics_process(delta):
-	var move = randi()%20
-	if move%2 ==0:
-		position.x += move
-	else:
-		position.x -= move
-		
+var move:Vector2 = Vector2(0,0)
+func _ready():
+	$Tween.interpolate_property(self,"position",position,position+move,0,Tween.TRANS_LINEAR,Tween.EASE_IN)
 
 func _on_mover_timeout():
-	pass # Replace with function body.
+	move.x = randi()%50
+	print(move)
+	if int(move.x)%2 ==0:
+		move.x = -move.x
+		$Tween.interpolate_property(self,"position",position,position+move,0,Tween.TRANS_LINEAR,Tween.EASE_IN)
+		$Tween.start()
+	else:
+		$Tween.start()
+		$Tween.interpolate_property(self,"position",position,position+move,0,Tween.TRANS_LINEAR,Tween.EASE_IN)
+	print(position)
 
 
 func _on_Area2D_body_entered(body):
