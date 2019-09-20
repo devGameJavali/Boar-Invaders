@@ -7,6 +7,7 @@ var points = 0
 func _process(delta):
 	$Label2.text = str(points)
 func _on_Spawner_timeout():
+	print(numE)
 	$Spawner.start()
 	if numE<100:
 		var e = enemy.instance()
