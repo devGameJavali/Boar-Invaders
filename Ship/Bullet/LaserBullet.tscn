@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1.94669, 19.9759 )
 
-[node name="LaserBullet" type="Area2D" groups=[
+[node name="LaserBullet" type="KinematicBody2D" groups=[
 "bullet",
 ]]
 script = ExtResource( 1 )
@@ -19,3 +19,4 @@ texture = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.566965, -0.0809956 )
 shape = SubResource( 1 )
+
