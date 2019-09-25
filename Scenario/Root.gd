@@ -1,6 +1,6 @@
 extends Node2D
 
-var enemy = preload("res://Enemy.tscn")
+var enemy = preload("res://Enemies/Main/Enemy.tscn")
 var numE = 0
 var points = 0
 
@@ -9,7 +9,7 @@ func _process(delta):
 func _on_Spawner_timeout():
 	print(numE)
 	$Spawner.start()
-	if numE<100:
+	if numE<1000:
 		var e = enemy.instance()
 		add_child(e)
 		e.position = Vector2(500,100)

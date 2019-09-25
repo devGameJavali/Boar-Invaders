@@ -6,7 +6,7 @@ const LEFT1 = 3
 const LEFT2 = 6
 enum anim {IDLE,RIGHT1,RIGHT2,LEFT1,LEFT2}
 
-var bullet = preload("res://LaserBullet.tscn")
+var bullet = preload("res://Ship/Bullet/LaserBullet.tscn")
 
 const SPEED = 7
 
