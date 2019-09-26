@@ -1,10 +1,11 @@
 extends KinematicBody2D
-const IDLE = 0
-const RIGHT1 = 14
-const RIGHT2 = 15
-const LEFT1 = 3
-const LEFT2 = 6
+const IDLE:int = 0
+const RIGHT1:int = 14
+const RIGHT2:int = 15
+const LEFT1:int = 3
+const LEFT2:int = 6
 enum anim {IDLE,RIGHT1,RIGHT2,LEFT1,LEFT2}
+var can_shoot:bool = true
 
 var bullet = preload("res://Ship/Bullet/LaserBullet.tscn")
 
@@ -23,7 +24,16 @@ func _physics_process(delta):
 		$Sprite.frame = IDLE
 		
 func _input(event):
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton and can_shoot == true:
 		var shoot = bullet.instance()
 		get_node("..").add_child(shoot)
 		shoot.position = position
+		can_shoot = false
+		$shoot.start()
+
+
+func _on_shoot_timeout():
+	can_shoot=true
+	pass # Replace with function body.
+
+
