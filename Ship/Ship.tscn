@@ -12,6 +12,7 @@ script = ExtResource( 1 )
 texture = ExtResource( 2 )
 vframes = 8
 hframes = 3
+frame = 2
 
 [node name="Area2D" type="Area2D" parent="."]
 scale = Vector2( 2.5, 3 )

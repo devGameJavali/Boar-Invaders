@@ -1,15 +1,16 @@
 extends KinematicBody2D
-var velocity:Vector2 = Vector2(0,-400)
+var velocity:Vector2 = Vector2(0,-800)
 
 
-func _ready():
-	position.angle_to(velocity)
 func _physics_process(delta):
 	var hentai
 	if position.y > 0:
 		hentai = move_and_collide(velocity*delta)
 		if(hentai):
 			if hentai.collider.is_in_group("bullet"):
+				queue_free()
+			elif hentai.collider.is_in_group("block"):
+				hentai.collider.queue_free()
 				queue_free()
 			elif hentai.collider.is_in_group("reflect"):
 #changes the velocity vector the consider the reflection, then rotates the 

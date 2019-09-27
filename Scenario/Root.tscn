@@ -1,17 +1,19 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenario/Root.gd" type="Script" id=1]
 [ext_resource path="res://Ship/Ship.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenario/Wall.gd" type="Script" id=3]
+[ext_resource path="res://Wall.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenario/StaticBody2D.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 113.267, 42.7147 )
+extents = Vector2( 65.0817, 38.7981 )
 
 [node name="Root" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="Ship" parent="." instance=ExtResource( 2 )]
-position = Vector2( 94.183, 562.882 )
+position = Vector2( 373.057, 956.587 )
+scale = Vector2( 1.5, 1.5 )
 
 [node name="Spawner" type="Timer" parent="."]
 wait_time = 0.8
@@ -32,127 +34,92 @@ margin_bottom = 15.629
 wait_time = 5.0
 autostart = true
 
-[node name="Node2D" type="Node2D" parent="."]
-position = Vector2( 87.8801, 124.066 )
-scale = Vector2( 0.8, 0.8 )
+[node name="Wall" parent="." instance=ExtResource( 3 )]
+position = Vector2( 135.658, 799.081 )
+size = Vector2( 4, 4 )
 
-[node name="Wall" type="StaticBody2D" parent="Node2D" groups=[
+[node name="Wall2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 543.534, 792.049 )
+size = Vector2( 3, 3 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=[
 "reflect",
-"Wall",
 ]]
-position = Vector2( 194.748, 327.922 )
-scale = Vector2( 0.2, 1.5 )
-script = ExtResource( 3 )
+position = Vector2( 159.943, 393.705 )
+rotation = 0.523599
+scale = Vector2( 1, 0.6 )
+script = ExtResource( 4 )
 
-[node name="Polygon2D2" type="Polygon2D" parent="Node2D/Wall"]
-color = Color( 0.796078, 0.0862745, 0.0862745, 1 )
-polygon = PoolVector2Array( -69.1413, -47.9571, 155.189, -47.9571, 155.189, 35.4353, -69.629, 35.4353 )
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D"]
+position = Vector2( 0, 6.29492 )
+scale = Vector2( 0.858659, 1 )
+color = Color( 0.827451, 0.0784314, 0.780392, 1 )
+polygon = PoolVector2Array( -84.9426, -43.7051, -84.9426, -18.7051, -84.9426, 31.2949, -22.2881, 31.2949, 65.0574, 31.2949, 65.0574, -43.7051 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Wall"]
-position = Vector2( 43.0183, -5.66028 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( -8.27016, 0.418121 )
 shape = SubResource( 1 )
 
-[node name="Tween" type="Tween" parent="Node2D/Wall"]
+[node name="Tween" type="Tween" parent="StaticBody2D"]
 
-[node name="Wall6" type="StaticBody2D" parent="Node2D" groups=[
+[node name="StaticBody2D4" type="StaticBody2D" parent="." groups=[
 "reflect",
-"Wall",
 ]]
-position = Vector2( 776.308, 184.147 )
-scale = Vector2( 0.2, 1.5 )
-script = ExtResource( 3 )
-
-[node name="Polygon2D2" type="Polygon2D" parent="Node2D/Wall6"]
-color = Color( 0.796078, 0.0862745, 0.0862745, 1 )
-polygon = PoolVector2Array( -69.1413, -47.9571, 155.189, -47.9571, 155.189, 35.4353, -69.629, 35.4353 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Wall6"]
-position = Vector2( 43.0183, -5.66028 )
-shape = SubResource( 1 )
-
-[node name="Tween" type="Tween" parent="Node2D/Wall6"]
-
-[node name="Wall2" type="StaticBody2D" parent="Node2D" groups=[
-"reflect",
-"Wall",
-]]
-position = Vector2( 804.814, 347.47 )
-rotation = 1.5708
-scale = Vector2( 0.2, 1.5 )
-script = ExtResource( 3 )
-
-[node name="Polygon2D2" type="Polygon2D" parent="Node2D/Wall2"]
-color = Color( 0.796078, 0.0862745, 0.0862745, 1 )
-polygon = PoolVector2Array( -69.1413, -47.9571, 155.189, -47.9571, 155.189, 35.4353, -69.629, 35.4353 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Wall2"]
-position = Vector2( 43.0183, -5.66028 )
-shape = SubResource( 1 )
-
-[node name="Tween" type="Tween" parent="Node2D/Wall2"]
-
-[node name="Wall5" type="StaticBody2D" parent="Node2D" groups=[
-"reflect",
-"Wall",
-]]
-position = Vector2( 200.637, 156.848 )
-rotation = 1.5708
-scale = Vector2( 0.2, 1.5 )
-script = ExtResource( 3 )
-
-[node name="Polygon2D2" type="Polygon2D" parent="Node2D/Wall5"]
-color = Color( 0.796078, 0.0862745, 0.0862745, 1 )
-polygon = PoolVector2Array( -69.1413, -47.9571, 155.189, -47.9571, 155.189, 35.4353, -69.629, 35.4353 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Wall5"]
-position = Vector2( 43.0183, -5.66028 )
-shape = SubResource( 1 )
-
-[node name="Tween" type="Tween" parent="Node2D/Wall5"]
-
-[node name="Wall3" type="StaticBody2D" parent="Node2D" groups=[
-"reflect",
-"Wall",
-]]
-position = Vector2( 490.771, 344.885 )
+position = Vector2( 357.555, 257.668 )
 rotation = 0.785398
-scale = Vector2( 0.2, 1.5 )
-script = ExtResource( 3 )
+scale = Vector2( 1, 0.6 )
+script = ExtResource( 4 )
 
-[node name="Polygon2D2" type="Polygon2D" parent="Node2D/Wall3"]
-color = Color( 0.796078, 0.0862745, 0.0862745, 1 )
-polygon = PoolVector2Array( -69.1413, -47.9571, 155.189, -47.9571, 155.189, 35.4353, -69.629, 35.4353 )
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D4"]
+position = Vector2( 0, 6.29492 )
+scale = Vector2( 0.858659, 1 )
+color = Color( 0.827451, 0.0784314, 0.780392, 1 )
+polygon = PoolVector2Array( -84.9426, -43.7051, -84.9426, -18.7051, -84.9426, 31.2949, -22.2881, 31.2949, 65.0574, 31.2949, 65.0574, -43.7051 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Wall3"]
-position = Vector2( 43.0183, -5.66028 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2( -8.27016, 0.418121 )
 shape = SubResource( 1 )
 
-[node name="Tween" type="Tween" parent="Node2D/Wall3"]
+[node name="Tween" type="Tween" parent="StaticBody2D4"]
 
-[node name="Wall4" type="StaticBody2D" parent="Node2D" groups=[
+[node name="StaticBody2D2" type="StaticBody2D" parent="." groups=[
 "reflect",
-"Wall",
 ]]
-position = Vector2( 384.152, 170.417 )
-rotation = 0.785398
-scale = Vector2( 0.2, 1.5 )
-script = ExtResource( 3 )
+position = Vector2( 371.875, 505.399 )
+rotation = 1.5708
+scale = Vector2( 1, 0.6 )
+script = ExtResource( 4 )
 
-[node name="Polygon2D2" type="Polygon2D" parent="Node2D/Wall4"]
-color = Color( 0.796078, 0.0862745, 0.0862745, 1 )
-polygon = PoolVector2Array( -69.1413, -47.9571, 155.189, -47.9571, 155.189, 35.4353, -69.629, 35.4353 )
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D2"]
+position = Vector2( 0, 6.29492 )
+scale = Vector2( 0.858659, 1 )
+color = Color( 0.827451, 0.0784314, 0.780392, 1 )
+polygon = PoolVector2Array( -84.9426, -43.7051, -84.9426, -18.7051, -84.9426, 31.2949, -22.2881, 31.2949, 65.0574, 31.2949, 65.0574, -43.7051 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Wall4"]
-position = Vector2( 43.0183, -5.66028 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2( -8.27016, 0.418121 )
 shape = SubResource( 1 )
 
-[node name="Tween" type="Tween" parent="Node2D/Wall4"]
+[node name="Tween" type="Tween" parent="StaticBody2D2"]
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="." groups=[
+"reflect",
+]]
+position = Vector2( 546.576, 377.953 )
+scale = Vector2( 1, 0.6 )
+script = ExtResource( 4 )
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D3"]
+position = Vector2( 0, 6.29492 )
+scale = Vector2( 0.858659, 1 )
+color = Color( 0.827451, 0.0784314, 0.780392, 1 )
+polygon = PoolVector2Array( -84.9426, -43.7051, -84.9426, -18.7051, -84.9426, 31.2949, -22.2881, 31.2949, 65.0574, 31.2949, 65.0574, -43.7051 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2( -8.27016, 0.418121 )
+shape = SubResource( 1 )
+
+[node name="Tween" type="Tween" parent="StaticBody2D3"]
 
 [connection signal="timeout" from="Spawner" to="." method="_on_Spawner_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
-[connection signal="tween_completed" from="Node2D/Wall/Tween" to="Node2D/Wall" method="_on_Tween_tween_completed"]
-[connection signal="tween_completed" from="Node2D/Wall6/Tween" to="Node2D/Wall6" method="_on_Tween_tween_completed"]
-[connection signal="tween_completed" from="Node2D/Wall2/Tween" to="Node2D/Wall2" method="_on_Tween_tween_completed"]
-[connection signal="tween_completed" from="Node2D/Wall5/Tween" to="Node2D/Wall5" method="_on_Tween_tween_completed"]
-[connection signal="tween_completed" from="Node2D/Wall3/Tween" to="Node2D/Wall3" method="_on_Tween_tween_completed"]
-[connection signal="tween_completed" from="Node2D/Wall4/Tween" to="Node2D/Wall4" method="_on_Tween_tween_completed"]

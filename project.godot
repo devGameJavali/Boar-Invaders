@@ -18,6 +18,13 @@ _global_script_class_icons={
 config/name="Boar Invaders"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=720
+window/size/height=1080
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
+
 [importer_defaults]
 
 texture={
