@@ -1,10 +1,10 @@
 extends KinematicBody2D
-var velocity:Vector2 = Vector2(0,-800)
+var velocity:Vector2 = Vector2(0,600)
 
 
 func _physics_process(delta):
 	var hentai
-	if position.y > 0:
+	if position.y < 3000:
 		hentai = move_and_collide(velocity*delta)
 		if(hentai):
 			if hentai.collider.is_in_group("bullet") :
@@ -17,9 +17,9 @@ func _physics_process(delta):
 #bullet to the front of velocity and then resets the velocity vector
 				velocity = velocity.bounce(hentai.normal)
 				rotation_degrees = rad2deg(velocity.angle())+90
-			elif hentai.collider.is_in_group("enemy"):
-				hentai.collider.queue_free()
-				$"../points"._update(1)
+			elif hentai.collider.is_in_group("player"):
+				print("hit")
+				$"../life"._update(-1)
 				queue_free()
 	else:
 		queue_free()

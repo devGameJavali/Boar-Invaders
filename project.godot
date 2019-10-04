@@ -18,9 +18,13 @@ _global_script_class_icons={
 config/name="Boar Invaders"
 config/icon="res://icon.png"
 
+[autoload]
+
+Root="*res://Scenario/Root.gd"
+
 [display]
 
-window/size/width=720
+window/size/width=1200
 window/size/height=1080
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
@@ -58,4 +62,4 @@ mouseL={
 
 [rendering]
 
-environment/default_environment="res://default_env.tres"
+environment/default_environment="res://old/default_env.tres"
