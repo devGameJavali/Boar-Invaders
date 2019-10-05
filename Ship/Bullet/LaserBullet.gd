@@ -18,7 +18,7 @@ func _physics_process(delta):
 				velocity = velocity.bounce(hentai.normal)
 				rotation_degrees = rad2deg(velocity.angle())+90
 			elif hentai.collider.is_in_group("enemy"):
-				hentai.collider.queue_free()
+				hentai.collider.die()
 				$"../points"._update(1)
 				queue_free()
 	else:

@@ -17,6 +17,9 @@ position = Vector2( 373.057, 956.587 )
 scale = Vector2( 1.5, 1.5 )
 collision_layer = 3
 
+[node name="Camera2D" type="Camera2D" parent="Ship"]
+current = true
+
 [node name="Label" type="Label" parent="."]
 margin_right = 40.0
 margin_bottom = 14.0

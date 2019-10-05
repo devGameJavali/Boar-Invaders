@@ -15,13 +15,13 @@ func dTween():
    
 
 func _on_actionTimer_timeout():
-	if act%16 == 0:
+	if act%8 == 0:
 		dTween()
 		if side ==0:
 			side=1
 		elif side ==1:
 			side = 0
-		act-=15
+		act-=7
 		return
 	elif side == 0:
 		rTween()

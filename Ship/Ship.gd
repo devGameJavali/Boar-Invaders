@@ -46,7 +46,7 @@ func _input(event):
 	if event is InputEventMouseButton and can_shoot == true:
 		var shoot = bullet.instance()
 		get_node("..").add_child(shoot)
-		shoot.position = position
+		shoot.position = get_global_transform()[2]
 		can_shoot = false
 		$shoot.start()
 

@@ -1,59 +1,17 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Enemies/Army.gd" type="Script" id=1]
-[ext_resource path="res://Enemies/Invader/Invader.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Enemies/Invader/troops.gd" type="Script" id=2]
 
 [node name="Army" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="troops" type="Node2D" parent="."]
+script = ExtResource( 2 )
 
-[node name="Invader" parent="troops" instance=ExtResource( 2 )]
-
-[node name="Invader2" parent="troops" instance=ExtResource( 2 )]
-position = Vector2( 128, 0 )
-
-[node name="Invader3" parent="troops" instance=ExtResource( 2 )]
-position = Vector2( 256, 0 )
-
-[node name="Invader4" parent="troops" instance=ExtResource( 2 )]
-position = Vector2( 384, 0 )
-
-[node name="Invader5" parent="troops" instance=ExtResource( 2 )]
-position = Vector2( 512, 0 )
-
-[node name="Invader7" parent="troops" instance=ExtResource( 2 )]
-position = Vector2( 0, 128 )
-
-[node name="Invader8" parent="troops" instance=ExtResource( 2 )]
-position = Vector2( 128, 128 )
-
-[node name="Invader9" parent="troops" instance=ExtResource( 2 )]
-position = Vector2( 256, 128 )
-
-[node name="Invader10" parent="troops" instance=ExtResource( 2 )]
-position = Vector2( 384, 128 )
-
-[node name="Invader11" parent="troops" instance=ExtResource( 2 )]
-position = Vector2( 512, 128 )
-
-[node name="Invader14" parent="troops" instance=ExtResource( 2 )]
-position = Vector2( 512, 256 )
-
-[node name="Invader15" parent="troops" instance=ExtResource( 2 )]
-position = Vector2( 384, 256 )
-
-[node name="Invader16" parent="troops" instance=ExtResource( 2 )]
-position = Vector2( 256, 256 )
-
-[node name="Invader17" parent="troops" instance=ExtResource( 2 )]
-position = Vector2( 128, 256 )
-
-[node name="Invader18" parent="troops" instance=ExtResource( 2 )]
-position = Vector2( 0, 256 )
-
-[node name="Invader19" parent="troops" instance=ExtResource( 2 )]
-position = Vector2( 0, 256 )
+[node name="reTimer" type="Timer" parent="troops"]
+wait_time = 2.0
+autostart = true
 
 [node name="actionTimer" type="Timer" parent="."]
 wait_time = 0.6
@@ -61,4 +19,5 @@ autostart = true
 
 [node name="Tween" type="Tween" parent="."]
 
+[connection signal="timeout" from="troops/reTimer" to="troops" method="_on_reTimer_timeout"]
 [connection signal="timeout" from="actionTimer" to="." method="_on_actionTimer_timeout"]
