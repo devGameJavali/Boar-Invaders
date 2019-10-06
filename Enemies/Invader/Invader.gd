@@ -1,23 +1,20 @@
-extends StaticBody2D
-var bul = preload("res://Enemies/Invader/ene_bull.tscn")
-var id
+extends enemy
+
+
+func _ready():
+	root = "../../.."
+
 
 func _on_shoot_timeout():
+	var p = get_global_transform()[2]
 	var action = randi()%12
-	if action == 2:
-		var shoot = bul.instance()
-		get_node("../../..").add_child(shoot)
-		shoot.position = get_global_transform()[2]
+	if action ==4:
+		shoot($cL.get_global_transform()[2],root)
+		shoot($cR.get_global_transform()[2],root)
+		shoot($cM.get_global_transform()[2],root)
 	pass # Replace with function body.
 
+	
 func _on_Timer_timeout():
 	$shoot.start()
 	pass # Replace with function body.
-	
-func set_id(x,y):
-	id = Vector2(x,y)
-
-
-func die():
-	$"..".idList[id.x][id.y] = 0
-	queue_free()

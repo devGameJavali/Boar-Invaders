@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Enemies/Army.gd" type="Script" id=1]
+[ext_resource path="res://Enemies/Invader/Army.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/Invader/troops.gd" type="Script" id=2]
 
 [node name="Army" type="Node2D"]

@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Ship/Ship.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenario/ColorPicker.gd" type="Script" id=2]
+
+[node name="Customization" type="Node2D"]
+pause_mode = 2
+
+[node name="Container" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+
+[node name="Ship" parent="Container" instance=ExtResource( 1 )]
+pause_mode = 1
+editor/display_folded = true
+position = Vector2( 375, 522 )
+scale = Vector2( 10, 10 )
+
+[node name="Container" type="Container" parent="Container"]
+margin_left = 800.0
+margin_top = 25.0
+margin_right = 840.0
+margin_bottom = 65.0
+
+[node name="ColorPicker" type="ColorPicker" parent="Container/Container"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 4.0
+margin_bottom = 4.0
+script = ExtResource( 2 )
+
+[node name="Button" type="Button" parent="Container"]
+margin_left = 814.0
+margin_top = 519.0
+margin_right = 1056.0
+margin_bottom = 594.0
+text = "Set Default"
+
+[node name="Button2" type="Button" parent="Container"]
+margin_left = 814.0
+margin_top = 625.0
+margin_right = 1056.0
+margin_bottom = 700.0
+text = "READY"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 600, 546 )
+current = true
+
+[connection signal="color_changed" from="Container/Container/ColorPicker" to="Container/Container/ColorPicker" method="_on_ColorPicker_color_changed"]
+[connection signal="pressed" from="Container/Button" to="Container/Container/ColorPicker" method="_on_Button_pressed"]
+[connection signal="pressed" from="Container/Button2" to="Container/Container/ColorPicker" method="_on_Button2_pressed"]
+
+[editable path="Container/Ship"]

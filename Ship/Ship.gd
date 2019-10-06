@@ -5,6 +5,8 @@ var can_shoot:bool = true
 
 var bullet = preload("res://Ship/Bullet/LaserBullet.tscn")
 func _ready():
+	if Root.col != null:
+		get_color()
 	print(anim)
 const SPEED:int = 400
 var velocity:Vector2
@@ -43,10 +45,12 @@ func _physics_process(delta):
 	move_and_slide(velocity)
 		
 func _input(event):
-	if event is InputEventMouseButton and can_shoot == true:
+	if event is InputEventMouseButton and can_shoot == true and $"..".name != "Container":
 		var shoot = bullet.instance()
 		get_node("..").add_child(shoot)
-		shoot.position = get_global_transform()[2]
+		shoot.position = $weR.get_global_transform()[2]
+		shoot.rotation = rotation
+		shoot.set_angle(rotation)
 		can_shoot = false
 		$shoot.start()
 
@@ -56,3 +60,5 @@ func _on_shoot_timeout():
 	pass # Replace with function body.
 
 
+func get_color():
+	$"sprites/Color".modulate = Root.col

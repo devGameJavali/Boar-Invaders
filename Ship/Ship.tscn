@@ -1,10 +1,8 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Ship/Ship.gd" type="Script" id=1]
-[ext_resource path="res://Ship/shipsprite1.png" type="Texture" id=2]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 13.5064, 27.0028 )
+[ext_resource path="res://Ship/COLOR.png" type="Texture" id=2]
+[ext_resource path="res://Ship/BODY.png" type="Texture" id=3]
 
 [node name="Ship" type="KinematicBody2D" groups=[
 "player",
@@ -13,17 +11,30 @@ collision_layer = 7
 collision_mask = 7
 script = ExtResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 2 )
-vframes = 8
-hframes = 3
-frame = 2
-
 [node name="shoot" type="Timer" parent="."]
 wait_time = 0.15
 one_shot = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[node name="weL" type="Position2D" parent="."]
+position = Vector2( -27.5274, 7.54453 )
+
+[node name="weR" type="Position2D" parent="."]
+position = Vector2( 30, 7.74844 )
+
+[node name="sprites" type="Node2D" parent="."]
+scale = Vector2( 0.6, 0.6 )
+
+[node name="Color" type="Sprite" parent="sprites"]
+texture = ExtResource( 2 )
+
+[node name="Body" type="Sprite" parent="sprites"]
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="Polygon2D" parent="."]
+color = Color( 0.133333, 0.207843, 0.337255, 0.647059 )
+polygon = PoolVector2Array( -0.266251, -50.4056, -14, -4, -36, 24, -12, 26, 14, 26, 36, 24, 14, -4 )
 
 [connection signal="timeout" from="shoot" to="." method="_on_shoot_timeout"]
