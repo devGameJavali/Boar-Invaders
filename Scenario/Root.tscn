@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenario/Root.gd" type="Script" id=1]
 [ext_resource path="res://Ship/Ship.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Scenario/points.gd" type="Script" id=6]
 [ext_resource path="res://Scenario/life.gd" type="Script" id=7]
 [ext_resource path="res://Enemies/double/Double.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Enemies/MissileBatery(3)/MissileBat.tscn" type="PackedScene" id=9]
 
 [node name="Root" type="Node2D"]
 script = ExtResource( 1 )
@@ -19,6 +20,7 @@ collision_layer = 3
 
 [node name="Army" parent="." instance=ExtResource( 3 )]
 editor/display_folded = true
+position = Vector2( 800, 25 )
 
 [node name="Scenario" type="Node2D" parent="."]
 position = Vector2( 56.2011, 200 )
@@ -83,8 +85,34 @@ text = "40
 script = ExtResource( 7 )
 
 [node name="Double" parent="." instance=ExtResource( 8 )]
-position = Vector2( 1083.26, 1275 )
-rotation = 0.20944
+position = Vector2( 1900, 400 )
+rotation = 0.785398
+
+[node name="Double2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 1925, 850 )
+rotation = 0.785398
+
+[node name="Double3" parent="." instance=ExtResource( 8 )]
+position = Vector2( 1925, 1425 )
+rotation = 0.785398
+
+[node name="Double4" parent="." instance=ExtResource( 8 )]
+position = Vector2( -24.9999, 1315.01 )
+rotation = 5.67232
+
+[node name="Double5" parent="." instance=ExtResource( 8 )]
+position = Vector2( -50.0001, 850 )
+rotation = 5.67232
+
+[node name="Double6" parent="." instance=ExtResource( 8 )]
+position = Vector2( -150, 175 )
+rotation = 5.67232
+
+[node name="MissileBat" parent="." instance=ExtResource( 9 )]
+position = Vector2( 356.321, -1350 )
+
+[node name="MissileBat2" parent="." instance=ExtResource( 9 )]
+position = Vector2( 1156.32, -1350 )
 
 
 [editable path="Army"]

@@ -9,7 +9,9 @@ extents = Vector2( 12.7198, 13.9267 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 18.2718, 2.91171 )
 
-[node name="Double" type="StaticBody2D"]
+[node name="Double" type="StaticBody2D" groups=[
+"enemy",
+]]
 position = Vector2( 625, 450 )
 scale = Vector2( 2, 2 )
 collision_layer = 196608

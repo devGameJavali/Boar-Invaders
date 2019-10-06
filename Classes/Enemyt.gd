@@ -3,6 +3,7 @@ class_name enemy
 var bul = preload("res://Enemies/Invader/ene_bull.tscn")
 var id
 var root
+var life = 3
 func shoot(pos,father):
 	root = father
 	var shoot = bul.instance()
@@ -11,7 +12,11 @@ func shoot(pos,father):
 	shoot.set_angle(rotation)
 func set_id(x,y):
 	id = Vector2(x,y)
-func die():
-	if name == "Invader":
+func damage():
+	life -= 1
+	if life < 1:
+		if name == "Invader":
 			$"..".idList[id.x][id.y] = 0
-	queue_free()
+		queue_free()
+		return true
+	return false

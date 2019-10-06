@@ -3,6 +3,7 @@
 [ext_resource path="res://Enemies/Invader/Invader.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/Invader/ene_1.png" type="Texture" id=2]
 
+
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 23.8612, 41.467 )
 
@@ -31,7 +32,6 @@ autostart = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.291992, -0.875965 )
 shape = SubResource( 1 )
-disabled = true
 
 [node name="cR" type="Position2D" parent="."]
 position = Vector2( 19.5017, -19.0261 )

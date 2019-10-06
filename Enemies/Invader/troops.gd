@@ -1,7 +1,7 @@
 extends Node2D
 
 var ship = preload("res://Enemies/Invader/Invader.tscn")
-var size = Vector2(4,2)
+var size = Vector2(7,1)
 var idList:Array = []
 func _ready():
 	spawn_squad()

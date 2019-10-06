@@ -4,57 +4,78 @@ enum anim {IDLE=0,FORWARD=0,FORWARDLEFT=-45,FORWARDRIGHT=45,BACKWARD=180,BACKWAR
 var can_shoot:bool = true
 
 var bullet = preload("res://Ship/Bullet/LaserBullet.tscn")
+var missile = preload("res://Enemies/MissileBatery(3)/Missile.tscn")
 func _ready():
 	if Root.col != null:
 		get_color()
 	print(anim)
 const SPEED:int = 400
+const ACEL = 25
+const REST = 5
 var velocity:Vector2
+
 func _physics_process(delta):
-	velocity = Vector2(0,0)
+	#velocity = Vector2(0,0)
 	if Input.is_action_pressed("ui_right"):
-		if Input.is_action_pressed("ui_up"):
-			rotation_degrees = anim.FORWARDRIGHT
-			velocity = Vector2(SPEED,-SPEED)
-		elif Input.is_action_pressed("ui_down"):
-			velocity = Vector2(SPEED,SPEED)
-			rotation_degrees = anim.BACKWARDRIGHT
-		else:
-			velocity = Vector2(SPEED,0)
-			rotation_degrees = anim.RIGHT
+		rotation_degrees+=3
 	elif Input.is_action_pressed("ui_left"):
-		if Input.is_action_pressed("ui_up"):
-			rotation_degrees = anim.FORWARDLEFT
-			velocity = Vector2(-SPEED,-SPEED)
-		elif Input.is_action_pressed("ui_down"):
-			velocity = Vector2(-SPEED,SPEED)
-			rotation_degrees = anim.BACKWARDLEFT
-		else:
-			velocity = Vector2(-SPEED,0)
-			rotation_degrees = anim.LEFT
-	elif Input.is_action_pressed("ui_up"):
-		velocity = Vector2(0,-SPEED)
-		rotation_degrees = anim.FORWARD
+		rotation_degrees-=3
+	if Input.is_action_pressed("ui_up"):
+		velocity += (Vector2(100,0).rotated(deg2rad(rotation_degrees-90)).normalized())*8
 	elif Input.is_action_pressed("ui_down"):
-		velocity = Vector2(0,SPEED)
-		rotation_degrees = anim.BACKWARD
+		velocity -= (Vector2(100,0).rotated(deg2rad(rotation_degrees-90)).normalized())*8
 	else:
-		rotation_degrees = anim.IDLE
-	if abs(velocity.x)-abs(velocity.y)==0:
-		velocity *=0.6
+		velocity.y = inertia(velocity.y)
+		velocity.x = inertia(velocity.x)
+		#velocity -=(Vector2(10,0).rotated(deg2rad(rotation_degrees-90)).clamped(SPEED))/2
+		#ativação de inércia
+		#velocity.y = inertia(velocity.y)
+	velocity = velocity.clamped(SPEED)
 	move_and_slide(velocity)
+	#rotation_degrees = (rad2deg(velocity.angle())+90)
 		
+		
+func inertia(vel):
+	if vel>0:
+		if vel>25:
+			vel -= REST
+		else:
+			vel = 0
+	elif vel<0:
+		if vel<-25:
+			vel += REST
+		else:
+				vel = 0
+	return vel
+#func start(_transform,_target):
+#	global_transform = _transform
+#	velocity = transform.x * speed
+#	target = _target
+#
+#func _physics_process(delta):
+#	acceleration += _target()
+#	velocity += acceleration * delta
+#	velocity = velocity.clamped(speed)
+#	rotation = velocity.angle()
+#	position += velocity * delta
+
+
 func _input(event):
-	if event is InputEventMouseButton and can_shoot == true and $"..".name != "Container":
-		var shoot = bullet.instance()
-		get_node("..").add_child(shoot)
-		shoot.position = $weR.get_global_transform()[2]
-		shoot.rotation = rotation
-		shoot.set_angle(rotation)
-		can_shoot = false
-		$shoot.start()
+	if $"..".name != "Container":
+		if event is InputEventMouseButton and can_shoot == true:
+			if event.is_action_pressed("mouseL"):
+				shoot($weL.get_global_transform()[2])
+			if event.is_action_pressed("mouseR"):
+				shoot($weR.get_global_transform()[2])
 
-
+func shoot(pos):
+	var shoot = bullet.instance()
+	get_node("..").add_child(shoot)
+	shoot.position = pos
+	shoot.rotation = rotation
+	shoot.set_angle(rotation)
+	can_shoot = false
+	$shoot.start()
 func _on_shoot_timeout():
 	can_shoot=true
 	pass # Replace with function body.

@@ -1,6 +1,4 @@
 extends ColorPicker
-func _ready():
-	print(Root.col)
 
 
 func _on_ColorPicker_color_changed(color):
