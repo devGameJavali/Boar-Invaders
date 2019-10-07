@@ -3,8 +3,6 @@
 [ext_resource path="res://Enemies/Invader/Army.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/Invader/troops.gd" type="Script" id=2]
 
-
-
 [node name="Army" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -23,3 +21,4 @@ autostart = true
 
 [connection signal="timeout" from="troops/reTimer" to="troops" method="_on_reTimer_timeout"]
 [connection signal="timeout" from="actionTimer" to="." method="_on_actionTimer_timeout"]
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]

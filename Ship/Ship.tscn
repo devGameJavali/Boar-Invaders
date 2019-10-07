@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Ship/Ship.gd" type="Script" id=1]
 [ext_resource path="res://Ship/COLOR.png" type="Texture" id=2]
 [ext_resource path="res://Ship/BODY.png" type="Texture" id=3]
+[ext_resource path="res://Ship/BURNING.png" type="Texture" id=4]
 
 [node name="Ship" type="KinematicBody2D" groups=[
 "player",
 ]]
+scale = Vector2( 2, 2 )
 collision_layer = 7
 collision_mask = 7
 script = ExtResource( 1 )
@@ -33,9 +35,15 @@ texture = ExtResource( 2 )
 [node name="Body" type="Sprite" parent="sprites"]
 texture = ExtResource( 3 )
 
+[node name="Burn" type="Sprite" parent="sprites"]
+visible = false
+position = Vector2( 0, 76 )
+texture = ExtResource( 4 )
+
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="." groups=[
 "player",
 ]]
+visible = false
 polygon = PoolVector2Array( -0.266251, -50.4056, -14, -4, -36, 24, -12, 26, 14, 26, 36, 24, 14, -4 )
 
 [connection signal="timeout" from="shoot" to="." method="_on_shoot_timeout"]

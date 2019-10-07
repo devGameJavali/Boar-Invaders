@@ -8,7 +8,6 @@ var missile = preload("res://Enemies/MissileBatery(3)/Missile.tscn")
 func _ready():
 	if Root.col != null:
 		get_color()
-	print(anim)
 const SPEED:int = 400
 const ACEL = 25
 const REST = 5
@@ -21,10 +20,12 @@ func _physics_process(delta):
 	elif Input.is_action_pressed("ui_left"):
 		rotation_degrees-=3
 	if Input.is_action_pressed("ui_up"):
+		$sprites/Burn.show()
 		velocity += (Vector2(100,0).rotated(deg2rad(rotation_degrees-90)).normalized())*8
 	elif Input.is_action_pressed("ui_down"):
 		velocity -= (Vector2(100,0).rotated(deg2rad(rotation_degrees-90)).normalized())*8
 	else:
+		$sprites/Burn.hide()
 		velocity.y = inertia(velocity.y)
 		velocity.x = inertia(velocity.x)
 		#velocity -=(Vector2(10,0).rotated(deg2rad(rotation_degrees-90)).clamped(SPEED))/2

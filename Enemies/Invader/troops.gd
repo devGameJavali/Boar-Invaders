@@ -7,7 +7,6 @@ func _ready():
 	spawn_squad()
 	
 func spawn_squad():
-	var start_pos= 110 * size.x
 	for i in range(0,size.x):
 		idList.append([])
 		for j in range(0,size.y):

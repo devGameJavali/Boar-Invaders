@@ -7,7 +7,11 @@ var velocity = Vector2.ZERO
 var acceleration = Vector2.ZERO
 var target
 
+
+func _ready():
+	set_physics_process(false)
 func start(_transform,_target):
+	$start.start()
 	global_transform = _transform
 	velocity = transform.x * speed
 	target = _target
@@ -28,6 +32,13 @@ func _target():
 
 func _on_Missile_body_entered(body):
 	if body.is_in_group("player"):
-		$"../Interface/VSplitContainer/life"._update(-5)
+		#$"../Interface/VSplitContainer/life"._update(-5)
 		queue_free()
+	pass # Replace with function body.
+
+
+func _on_start_timeout():
+	print("here")
+	set_physics_process(true)
+	$start.queue_free()
 	pass # Replace with function body.

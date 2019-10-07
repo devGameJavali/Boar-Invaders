@@ -9,6 +9,7 @@ extents = Vector2( 34, 30 )
 [node name="MissileBat" type="StaticBody2D" groups=[
 "enemy",
 ]]
+position = Vector2( 226, 134 )
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -22,5 +23,15 @@ autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+
+[node name="Missile" type="Position2D" parent="."]
+position = Vector2( 52, 60 )
+rotation = 1.5708
+scale = Vector2( 2, 1 )
+
+[node name="Missile2" type="Position2D" parent="."]
+position = Vector2( -52, 56 )
+rotation = 1.5708
+scale = Vector2( 2, 1 )
 
 [connection signal="timeout" from="shooter" to="." method="_on_shooter_timeout"]
