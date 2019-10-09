@@ -6,6 +6,7 @@
 [ext_resource path="res://Ship/BURNING.png" type="Texture" id=4]
 
 [node name="Ship" type="KinematicBody2D" groups=[
+"gravity",
 "player",
 ]]
 scale = Vector2( 2, 2 )

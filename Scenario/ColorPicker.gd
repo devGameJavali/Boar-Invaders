@@ -8,7 +8,7 @@ func _on_ColorPicker_color_changed(color):
 
 
 func _on_Button2_pressed():
-	get_tree().change_scene("res://Scenario/Root.tscn")
+	get_tree().change_scene("res://Sun.tscn")
 	pass # Replace with function body.
 
 

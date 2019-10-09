@@ -17,7 +17,7 @@ func _physics_process(delta):
 #bullet to the front of velocity and then resets the velocity vector
 			velocity = velocity.bounce(hentai.normal)
 			rotation_degrees = rad2deg(velocity.angle())+90
-		elif hentai.collider.is_in_group("player"):
+		elif hentai.collider.is_in_group("player") and  $"..".name == "Root":
 			$"../Interface/VSplitContainer/life"._update(-1)
 			queue_free()
 

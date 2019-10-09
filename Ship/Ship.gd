@@ -6,8 +6,7 @@ var can_shoot:bool = true
 var bullet = preload("res://Ship/Bullet/LaserBullet.tscn")
 var missile = preload("res://Enemies/MissileBatery(3)/Missile.tscn")
 func _ready():
-	if Root.col != null:
-		get_color()
+	get_color()
 const SPEED:int = 400
 const ACEL = 25
 const REST = 5
@@ -83,4 +82,5 @@ func _on_shoot_timeout():
 
 
 func get_color():
-	$"sprites/Color".modulate = Root.col
+	if Root.col != null:
+		$"sprites/Color".modulate = Root.col

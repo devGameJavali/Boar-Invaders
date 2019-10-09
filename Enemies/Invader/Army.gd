@@ -23,7 +23,6 @@ func dTween():
    
 
 func _on_actionTimer_timeout():
-	print($troops.get_children())
 	if act%8 == 0:
 		dTween()
 		if side ==0:

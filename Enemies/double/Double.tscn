@@ -13,6 +13,7 @@ extents = Vector2( 18.2718, 2.91171 )
 "enemy",
 ]]
 position = Vector2( 625, 450 )
+rotation = 0.785398
 scale = Vector2( 2, 2 )
 collision_layer = 196608
 script = ExtResource( 1 )
