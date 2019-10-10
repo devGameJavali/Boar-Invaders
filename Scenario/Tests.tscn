@@ -1,9 +1,31 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Ship/Ship.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenario/Elements/Wall.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Enemies/double/Double.tscn" type="PackedScene" id=3]
 
 [node name="Tests" type="Node2D"]
 
 [node name="Ship" parent="." instance=ExtResource( 1 )]
-position = Vector2( 1050, 1650 )
+position = Vector2( 1050, 2025 )
+
+[node name="Wall" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1018, 1100 )
+dime = Vector2( 50, 50 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureProgress" type="ProgressBar" parent="CanvasLayer"]
+modulate = Color( 0.164706, 0.517647, 0.709804, 1 )
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -155.0
+margin_right = 250.0
+margin_bottom = -75.0
+max_value = 1000.0
+step = 0.5
+value = 1000.0
+
+[node name="Double" parent="." instance=ExtResource( 3 )]
+position = Vector2( 625, 325 )
 

@@ -17,8 +17,8 @@ func _physics_process(delta):
 			velocity = velocity.bounce(hentai.normal)
 			rotation_degrees = rad2deg(velocity.angle())+90
 		elif hentai.collider.is_in_group("enemy"):
-			if hentai.collider.damage()== true:
-				$"../Interface/VSplitContainer/points"._update(1)
+			#if hentai.collider.damage()== true:
+				#$"../Interface/VSplitContainer/points"._update(1)
 			queue_free()
 
 func _on_VisibilityNotifier2D_screen_exited():

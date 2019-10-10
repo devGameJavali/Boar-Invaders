@@ -7,6 +7,7 @@
 extents = Vector2( 33.3333, 33.3333 )
 
 [node name="ene_bull" type="KinematicBody2D" groups=[
+"enemy",
 "bullet",
 ]]
 scale = Vector2( 0.3, 0.3 )

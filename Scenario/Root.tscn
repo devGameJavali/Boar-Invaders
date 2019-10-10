@@ -86,15 +86,12 @@ script = ExtResource( 7 )
 
 [node name="Double" parent="." instance=ExtResource( 8 )]
 position = Vector2( 1900, 400 )
-rotation = 0.785398
 
 [node name="Double2" parent="." instance=ExtResource( 8 )]
 position = Vector2( 1925, 850 )
-rotation = 0.785398
 
 [node name="Double3" parent="." instance=ExtResource( 8 )]
 position = Vector2( 1925, 1425 )
-rotation = 0.785398
 
 [node name="Double4" parent="." instance=ExtResource( 8 )]
 position = Vector2( -24.9999, 1315.01 )

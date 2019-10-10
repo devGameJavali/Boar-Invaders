@@ -6,7 +6,6 @@ func _physics_process(delta):
 	var hentai
 	hentai = move_and_collide(velocity*delta)
 	if(hentai):
-		print(hentai.collider.name)
 		if hentai.collider.is_in_group("bullet") :
 			queue_free()
 		elif hentai.collider.is_in_group("block"):
@@ -20,6 +19,9 @@ func _physics_process(delta):
 		elif hentai.collider.is_in_group("player") and  $"..".name == "Root":
 			$"../Interface/VSplitContainer/life"._update(-1)
 			queue_free()
+		elif hentai.collider.is_in_group("shield"):
+			if hentai.collider.hold_damage(20)==true:
+				queue_free()
 
 
 func set_angle(x):

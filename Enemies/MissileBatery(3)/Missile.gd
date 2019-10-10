@@ -38,7 +38,6 @@ func _on_Missile_body_entered(body):
 
 
 func _on_start_timeout():
-	print("here")
 	set_physics_process(true)
 	$"Node/track".set_physics_process(true)
 	$start.queue_free()

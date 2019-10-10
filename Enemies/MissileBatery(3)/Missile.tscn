@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Ship/Missile.gd" type="Script" id=1]
+[ext_resource path="res://Enemies/MissileBatery(3)/Missile.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/MissileBatery(3)/Sem título.png" type="Texture" id=2]
 [ext_resource path="res://Enemies/MissileBatery(3)/track.gd" type="Script" id=3]
 
