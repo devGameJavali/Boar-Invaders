@@ -10,7 +10,10 @@ extents = Vector2( 10, 20 )
 [sub_resource type="Gradient" id=2]
 colors = PoolColorArray( 1, 0, 0, 0, 1, 0, 0, 1 )
 
-[node name="Missile" type="Area2D"]
+[node name="Missile" type="Area2D" groups=[
+"enemy",
+"missile",
+]]
 rotation = 1.5708
 scale = Vector2( 2, 1 )
 script = ExtResource( 1 )
@@ -38,6 +41,7 @@ scale = Vector2( 2, 1 )
 z_index = -1
 default_color = Color( 0.4, 0.501961, 1, 1 )
 gradient = SubResource( 2 )
+texture_mode = -1288166990
 joint_mode = 2
 script = ExtResource( 3 )
 

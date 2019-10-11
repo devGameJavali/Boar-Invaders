@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Ship/Ship.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenario/Elements/Wall.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Enemies/double/Double.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Enemies/double(2)/Double.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Enemies/MissileBatery(3)/MissileBat.tscn" type="PackedScene" id=4]
 
 [node name="Tests" type="Node2D"]
 
@@ -27,5 +28,7 @@ step = 0.5
 value = 1000.0
 
 [node name="Double" parent="." instance=ExtResource( 3 )]
-position = Vector2( 625, 325 )
+position = Vector2( 350, 1921.8 )
+
+[node name="MissileBat" parent="." instance=ExtResource( 4 )]
 

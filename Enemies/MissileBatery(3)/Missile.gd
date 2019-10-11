@@ -6,17 +6,20 @@ export var steer_force = 35.0
 var velocity = Vector2.ZERO
 var acceleration = Vector2.ZERO
 var target
-
+var father
 
 func _ready():
 	set_physics_process(false)
-func start(_transform,_target):
+func start(_transform,_target,_father):
 	$start.start()
 	global_transform = _transform
 	velocity = transform.x * speed
 	target = _target
+	father = _father
 
 func _physics_process(delta):
+	if is_queued_for_deletion():
+		father.can_missile = true
 	acceleration += _target()
 	velocity += acceleration * delta
 	velocity = velocity.clamped(speed)
@@ -36,9 +39,10 @@ func _on_Missile_body_entered(body):
 		queue_free()
 	pass # Replace with function body.
 
-
 func _on_start_timeout():
 	set_physics_process(true)
 	$"Node/track".set_physics_process(true)
 	$start.queue_free()
 	pass # Replace with function body.
+
+

@@ -27,6 +27,10 @@ config/icon="res://icon.png"
 
 Root="*res://Scenario/Root.gd"
 
+[debug]
+
+gdscript/warnings/unassigned_variable=false
+
 [display]
 
 window/size/width=1920

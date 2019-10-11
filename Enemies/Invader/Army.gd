@@ -39,7 +39,7 @@ func _on_actionTimer_timeout():
 	pass # Replace with function body.
 
 
-func _on_Tween_tween_completed(object, key):
+func _on_Tween_tween_completed(object,key):
 	for i in $troops.get_children():
 		if i.name == "reTimer":
 			continue

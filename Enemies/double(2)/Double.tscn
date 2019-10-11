@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Enemies/double/Double.gd" type="Script" id=1]
-[ext_resource path="res://Enemies/double/double.png" type="Texture" id=2]
+[ext_resource path="res://Enemies/double(2)/Double.gd" type="Script" id=1]
+[ext_resource path="res://Enemies/double(2)/double.png" type="Texture" id=2]
+[ext_resource path="res://Classes/Samples/proBack.png" type="Texture" id=3]
+[ext_resource path="res://Classes/Samples/proFront.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 12.7198, 13.9267 )
@@ -12,8 +14,6 @@ extents = Vector2( 18.2718, 2.91171 )
 [node name="Double" type="StaticBody2D" groups=[
 "enemy",
 ]]
-position = Vector2( 625, 450 )
-rotation = 0.785398
 scale = Vector2( 2, 2 )
 collision_layer = 196608
 script = ExtResource( 1 )
@@ -23,10 +23,22 @@ rotation = 3.14159
 texture = ExtResource( 2 )
 
 [node name="shoot" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 0.1
 autostart = true
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="state" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="TextureProgress" type="TextureProgress" parent="."]
+margin_left = -26.0
+margin_top = -32.0
+margin_right = 26.0
+margin_bottom = -20.0
+texture_under = ExtResource( 3 )
+texture_progress = ExtResource( 4 )
 
 [node name="cL" type="Position2D" parent="."]
 position = Vector2( 25, 0 )
@@ -46,4 +58,5 @@ shape = SubResource( 2 )
 
 [connection signal="timeout" from="shoot" to="." method="_on_shoot_timeout"]
 [connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
+[connection signal="timeout" from="state" to="." method="_on_state_timeout"]
 [connection signal="body_entered" from="Shield" to="." method="_on_Shield_body_entered"]

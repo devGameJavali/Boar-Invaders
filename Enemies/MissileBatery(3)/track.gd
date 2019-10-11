@@ -3,7 +3,7 @@ var point
 var target
 var particle_ct = 100
 const SPEEDY =125
-var SPEEDX
+#var SPEEDX
 func _ready():
 	target = get_node("../..")
 	set_physics_process(false)

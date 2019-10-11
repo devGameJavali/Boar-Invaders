@@ -18,15 +18,13 @@ func set_angle(x):
 
 
 func _on_Bomb_body_entered(body):
-	if body.name !="Ship":
+	if not body.is_in_group("player"):
 		if body.is_in_group("bullet"):
 			body.queue_free()
 		elif exploded == true:
-			print("yo")
 			body.queue_free()
 		else:
 			body.queue_free()
-			print("exp")
 			explode()
 	pass # Replace with function body.
 
@@ -37,14 +35,12 @@ func _on_Tween_tween_completed(object, key):
 
 
 func _on_Bomb_area_entered(body):
-	print(body.name)
-	if body.is_in_group("bullet"):
-		body.queue_free()
-	elif exploded == true:
-		print("yo")
-		body.queue_free()
-	elif body.name != "Ship":
-		body.queue_free()
-		print("exp")
-		explode()
+	if not body.is_in_group("player"):
+		if body.is_in_group("bullet"):
+			body.queue_free()
+		elif exploded == true:
+			body.queue_free()
+		elif body.name != "Ship":
+			body.queue_free()
+			explode()
 	pass # Replace with function body.

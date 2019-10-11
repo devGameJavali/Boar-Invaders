@@ -2,7 +2,7 @@ extends enemy
 
 
 func _ready():
-	life = 1
+	life = 3
 	root = "../../.."
 
 

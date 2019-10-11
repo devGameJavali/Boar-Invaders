@@ -7,8 +7,8 @@
 extents = Vector2( 1.94669, 19.9759 )
 
 [node name="LaserBullet" type="KinematicBody2D" groups=[
-"bullet",
 "player",
+"bullet",
 ]]
 script = ExtResource( 1 )
 
@@ -22,5 +22,4 @@ position = Vector2( 0.566965, -0.0809956 )
 shape = SubResource( 1 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
-
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

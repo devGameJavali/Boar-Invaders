@@ -2,7 +2,8 @@ extends KinematicBody2D
 enum anim {IDLE=0,FORWARD=0,FORWARDLEFT=-45,FORWARDRIGHT=45,BACKWARD=180,BACKWARDLEFT=-135,BACKWARDRIGHT=135,LEFT=-90,RIGHT=90}
 var can_shootL:bool = true
 var can_shootR:bool = true
-var rotating = false
+
+var i = 0
 
 var bullet = preload("res://Ship/Bullet/LaserBullet.tscn")
 var bomb = preload("res://Ship/Bullet/Bomb.tscn")
@@ -14,12 +15,20 @@ const REST = 5
 var velocity:Vector2
 
 func _ready():
+	print(deg2rad(90))
+	print(rad2deg(1.5708))
+	OS.low_processor_usage_mode = true
 	get_color()
 
 #movimentação
 func _physics_process(delta):
-	$"../CanvasLayer/TextureProgress".value = Root.energy
-	if Input.is_action_just_pressed("space"):
+	if Input.is_action_just_pressed("ui_page_up"):
+		_dash()
+	
+	if $"..".name == "Tests":
+		$"../CanvasLayer/TextureProgress".value = Root.energy
+	if Input.is_action_just_pressed("space") and Root.energy > 100:
+		Root.energy -=100
 		var b = bomb.instance()
 		get_node("..").add_child(b)
 		b.position = global_position
@@ -28,10 +37,10 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("enter"):
 		if $"Shield".active== false:
 			$"Shield".active= true
-			$"Shield"/Polygon2D.show()
+			$"Shield"/Sprite.show()
 		else:
 			$"Shield".active= false
-			$"Shield"/Polygon2D.hide()
+			$"Shield"/Sprite.hide()
 	#velocity = Vector2(0,0)
 	if Input.is_action_pressed("ui_right"):
 		rotation_degrees+=3
@@ -78,14 +87,15 @@ func _input(event):
 				can_shootR = false
 				$shootR.start()
 		if event is InputEventMouseMotion:
-			var target = rad2deg(get_angle_to(get_global_mouse_position()))
-			print(rotation_degrees)
-			print(target)
-			if target != rotation_degrees:
-				if target>rotation_degrees:
-					rotation_degrees-=1
-				else:
-					rotation_degrees+=1
+			var target = rad2deg(get_angle_to(get_global_mouse_position()))+90
+			#if target<0:
+				#rotation_degrees += min(target*0.05,-1)
+			#else:
+				#rotation_degrees += max(target*0.05,1)
+
+
+
+
 
 func shoot(pos):
 	Root.energy -=5
@@ -112,6 +122,24 @@ func get_color():
 		$"sprites/Color".modulate = Root.col
 
 func _1_sec_function():
+	Input.set_default_cursor_shape(i)
+	i+= 1
+	if i ==16:
+		i = 0
 	if Root.energy<1000:
 		Root.energy += 10
+	if $"Shield".active == true:
+		Root.energy -=5
 	pass # Replace with function body.
+
+
+func _dash():
+	z_index = -10
+	set_physics_process(false)
+	var t = Tween.new()
+	self.add_child(t)
+	t.interpolate_property(self,"position",position,position+Vector2(1500,0).rotated(rotation-1.5708),2.5,Tween.TRANS_CUBIC,Tween.EASE_IN)
+	t.start()
+	z_index = 0
+	set_physics_process(true)
+

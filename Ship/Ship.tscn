@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Ship/Ship.gd" type="Script" id=1]
 [ext_resource path="res://Ship/COLOR.png" type="Texture" id=2]
 [ext_resource path="res://Ship/BODY.png" type="Texture" id=3]
 [ext_resource path="res://Ship/BURNING.png" type="Texture" id=4]
 [ext_resource path="res://Ship/Shield.gd" type="Script" id=5]
+[ext_resource path="res://Ship/SHIELD.png" type="Texture" id=6]
 
 [node name="Ship" type="KinematicBody2D" groups=[
 "gravity",
@@ -54,23 +55,27 @@ visible = false
 polygon = PoolVector2Array( -0.266251, -50.4056, -14, -4, -36, 24, -12, 26, 14, 26, 36, 24, 14, -4 )
 
 [node name="energy" type="Timer" parent="."]
+wait_time = 0.1
 autostart = true
 
 [node name="Shield" type="Area2D" parent="." groups=[
+"player",
 "shield",
 ]]
 script = ExtResource( 5 )
 
-[node name="Polygon2D" type="Polygon2D" parent="Shield"]
-visible = false
-z_index = -1
-color = Color( 0.0901961, 0.172549, 0.541176, 1 )
-polygon = PoolVector2Array( -63, -3, -57, -16, -55, -22, -45, -36, -39, -42, -25, -53, -13, -58, 3, -60, 18, -58, 23, -55, 34, -47, 40, -42, 42, -33, 49, -22, 57, -10, 63, -2 )
-
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shield"]
-polygon = PoolVector2Array( -62, -4, -55, -22, -46, -35, -36, -44, -26, -53, -14, -58, 3, -60, 17, -58, 40, -42, 42, -32, 45, -26, 63, -2 )
+polygon = PoolVector2Array( -63, 0, -63, -17, -56, -39, -32, -53, 0, -56, 32, -52, 56, -42, 65, -22, 65, 0 )
+
+[node name="Sprite" type="Sprite" parent="Shield"]
+visible = false
+position = Vector2( 1, -29 )
+scale = Vector2( 0.5, 0.5 )
+z_index = -1
+texture = ExtResource( 6 )
 
 [connection signal="timeout" from="shootL" to="." method="_on_shootL_timeout"]
 [connection signal="timeout" from="shootR" to="." method="_on_shootR_timeout"]
 [connection signal="timeout" from="energy" to="." method="_1_sec_function"]
+[connection signal="area_entered" from="Shield" to="Shield" method="_on_Shield_area_entered"]
 [connection signal="body_entered" from="Shield" to="Shield" method="_on_Shield_body_entered"]
