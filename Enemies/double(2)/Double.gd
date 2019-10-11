@@ -25,8 +25,11 @@ func _on_Tween_tween_completed(object, key):
 
 
 func _on_Shield_body_entered(body):
+	if not body.is_in_group("enemy"):
+		print("yws")
 	if body.is_in_group("player") and body.is_in_group("bullet"):
 		body.queue_free()
+		print("het")
 		print(life)
 	pass # Replace with function body.
 

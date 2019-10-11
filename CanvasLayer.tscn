@@ -1,0 +1,14 @@
+[gd_scene format=2]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="TextureProgress" type="ProgressBar" parent="."]
+modulate = Color( 0.164706, 0.517647, 0.709804, 1 )
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -155.0
+margin_right = 250.0
+margin_bottom = -75.0
+max_value = 1000.0
+step = 0.5
+value = 1000.0

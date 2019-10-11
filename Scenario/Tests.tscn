@@ -1,34 +1,72 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Ship/Ship.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenario/Elements/Wall.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Enemies/double(2)/Double.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Enemies/MissileBatery(3)/MissileBat.tscn" type="PackedScene" id=4]
+[ext_resource path="res://CanvasLayer.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenario/Elements/Wall.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Enemies/double(2)/Double.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenario/Missiles.gd" type="Script" id=5]
+[ext_resource path="res://Enemies/MissileBatery(3)/MissileBat.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Enemies/Invader/Army.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenario/Elements/Rotor.tscn" type="PackedScene" id=8]
 
 [node name="Tests" type="Node2D"]
 
 [node name="Ship" parent="." instance=ExtResource( 1 )]
-position = Vector2( 1050, 2025 )
+position = Vector2( 1704.07, 4103.62 )
 
-[node name="Wall" parent="." instance=ExtResource( 2 )]
-position = Vector2( 1018, 1100 )
+[node name="CanvasLayer" parent="." instance=ExtResource( 2 )]
+
+[node name="Scenario" type="Node" parent="."]
+
+[node name="Wall" parent="Scenario" instance=ExtResource( 3 )]
+position = Vector2( 1820.18, 5437.39 )
 dime = Vector2( 50, 50 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Enemies" type="Node" parent="."]
 
-[node name="TextureProgress" type="ProgressBar" parent="CanvasLayer"]
-modulate = Color( 0.164706, 0.517647, 0.709804, 1 )
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_top = -155.0
-margin_right = 250.0
-margin_bottom = -75.0
-max_value = 1000.0
-step = 0.5
-value = 1000.0
+[node name="Doubles" type="Node" parent="Enemies"]
+editor/display_folded = true
 
-[node name="Double" parent="." instance=ExtResource( 3 )]
-position = Vector2( 350, 1921.8 )
+[node name="Double" parent="Enemies/Doubles" instance=ExtResource( 4 )]
+position = Vector2( 278.765, 2195.28 )
+rotation = -1.5708
 
-[node name="MissileBat" parent="." instance=ExtResource( 4 )]
+[node name="Double2" parent="Enemies/Doubles" instance=ExtResource( 4 )]
+position = Vector2( 260, 3010 )
+rotation = -1.5708
 
+[node name="Double3" parent="Enemies/Doubles" instance=ExtResource( 4 )]
+position = Vector2( 242.577, 1006.38 )
+rotation = -1.5708
+
+[node name="Double4" parent="Enemies/Doubles" instance=ExtResource( 4 )]
+position = Vector2( 3047.65, 971.531 )
+rotation = 1.5708
+
+[node name="Double5" parent="Enemies/Doubles" instance=ExtResource( 4 )]
+position = Vector2( 3012.81, 1999.48 )
+rotation = 1.5708
+
+[node name="Double6" parent="Enemies/Doubles" instance=ExtResource( 4 )]
+position = Vector2( 3082.5, 3149.38 )
+rotation = 1.5708
+
+[node name="Missiles" type="Node" parent="Enemies"]
+script = ExtResource( 5 )
+
+[node name="MissileBat" parent="Enemies/Missiles" instance=ExtResource( 6 )]
+position = Vector2( 766.107, 308.228 )
+
+[node name="shooter" type="Timer" parent="Enemies/Missiles"]
+wait_time = 2.0
+autostart = true
+
+[node name="Army" parent="." instance=ExtResource( 7 )]
+position = Vector2( 1196.64, 989.11 )
+
+[node name="Rotor" parent="." instance=ExtResource( 8 )]
+position = Vector2( 2439.19, 2055.89 )
+
+[node name="Rotor2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 2264.97, 2909.61 )
+[connection signal="timeout" from="Enemies/Missiles/shooter" to="Enemies/Missiles" method="_on_shooter_timeout"]

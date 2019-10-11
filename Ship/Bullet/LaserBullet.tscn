@@ -7,8 +7,8 @@
 extents = Vector2( 1.94669, 19.9759 )
 
 [node name="LaserBullet" type="KinematicBody2D" groups=[
-"player",
 "bullet",
+"player",
 ]]
 script = ExtResource( 1 )
 

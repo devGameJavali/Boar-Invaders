@@ -12,7 +12,6 @@ extents = Vector2( 23.8612, 41.467 )
 [node name="Invader" type="StaticBody2D" groups=[
 "enemy",
 ]]
-visible = false
 position = Vector2( 208.712, 182.149 )
 script = ExtResource( 1 )
 
@@ -65,6 +64,5 @@ texture_under = ExtResource( 4 )
 texture_progress = ExtResource( 5 )
 
 [node name="Tween" type="Tween" parent="TextureProgress"]
-
 [connection signal="timeout" from="shoot" to="." method="_on_shoot_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

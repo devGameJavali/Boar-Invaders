@@ -19,7 +19,7 @@ func start(_transform,_target,_father):
 
 func _physics_process(delta):
 	if is_queued_for_deletion():
-		father.can_missile = true
+		_next_shoot()
 	acceleration += _target()
 	velocity += acceleration * delta
 	velocity = velocity.clamped(speed)
@@ -36,6 +36,7 @@ func _target():
 func _on_Missile_body_entered(body):
 	if body.is_in_group("player"):
 		#$"../Interface/VSplitContainer/life"._update(-5)
+		_next_shoot()
 		queue_free()
 	pass # Replace with function body.
 
@@ -45,4 +46,8 @@ func _on_start_timeout():
 	$start.queue_free()
 	pass # Replace with function body.
 
-
+func _next_shoot():
+	if father.can_missile1 == true:
+		father.can_missile2 = true
+	else:
+		father.can_missile1 = true
