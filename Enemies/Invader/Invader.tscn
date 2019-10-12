@@ -64,5 +64,6 @@ texture_under = ExtResource( 4 )
 texture_progress = ExtResource( 5 )
 
 [node name="Tween" type="Tween" parent="TextureProgress"]
+
 [connection signal="timeout" from="shoot" to="." method="_on_shoot_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -41,3 +41,9 @@ margin_right = 52.0
 margin_bottom = 12.0
 texture_under = ExtResource( 3 )
 texture_progress = ExtResource( 4 )
+
+[node name="shooter" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="shooter" to="." method="_on_shooter_timeout"]

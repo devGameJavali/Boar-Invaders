@@ -1,8 +1,11 @@
 extends Area2D
 var active = false
 
-	
-
+func _physics_process(delta):
+	if active == false:
+		$CollisionPolygon2D.disabled = true
+	else:
+		$CollisionPolygon2D.disabled = false
 func _on_Shield_body_entered(body):
 	if body.is_in_group("enemy") and body.is_in_group("bullet"):
 		body.queue_free()

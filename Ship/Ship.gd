@@ -3,6 +3,8 @@ enum anim {IDLE=0,FORWARD=0,FORWARDLEFT=-45,FORWARDRIGHT=45,BACKWARD=180,BACKWAR
 var can_shootL:bool = true
 var can_shootR:bool = true
 
+var dashing = false
+
 var i = 0
 
 var bullet = preload("res://Ship/Bullet/LaserBullet.tscn")
@@ -15,6 +17,9 @@ const REST = 5
 var velocity:Vector2
 
 func _ready():
+
+	if $"../..".name == "Customization":
+		set_physics_process(false)
 	print(deg2rad(90))
 	print(rad2deg(1.5708))
 	OS.low_processor_usage_mode = true
@@ -22,7 +27,12 @@ func _ready():
 
 #movimentação
 func _physics_process(delta):
+	if dashing == true:
+		return
+	
 	if Input.is_action_just_pressed("ui_page_up"):
+		$sprites/Burn.show()
+		dashing = true
 		_dash()
 	
 	if $"..".name == "Tests":
@@ -52,7 +62,8 @@ func _physics_process(delta):
 	elif Input.is_action_pressed("ui_down"):
 		velocity -= (Vector2(100,0).rotated(deg2rad(rotation_degrees-90)).normalized())*8
 	else:
-		$sprites/Burn.hide()
+		if dashing == false:
+			$sprites/Burn.hide()
 		velocity.y = inertia(velocity.y)
 		velocity.x = inertia(velocity.x)
 	velocity = velocity.clamped(SPEED)
@@ -122,7 +133,7 @@ func get_color():
 		$"sprites/Color".modulate = Root.col
 
 func _1_sec_function():
-	Input.set_default_cursor_shape(i)
+	#Input.set_default_cursor_shape(i)
 	i+= 1
 	if i ==16:
 		i = 0
@@ -132,14 +143,16 @@ func _1_sec_function():
 		Root.energy -=5
 	pass # Replace with function body.
 
-
 func _dash():
+	$sprites/Burn.show()
 	z_index = -10
-	set_physics_process(false)
-	var t = Tween.new()
-	self.add_child(t)
+	var t = $Tween
 	t.interpolate_property(self,"position",position,position+Vector2(1500,0).rotated(rotation-1.5708),2.5,Tween.TRANS_CUBIC,Tween.EASE_IN)
 	t.start()
 	z_index = 0
-	set_physics_process(true)
 
+
+func _on_Tween_tween_completed(object, key):
+	$sprites/Burn.hide()
+	dashing = false
+	pass # Replace with function body.

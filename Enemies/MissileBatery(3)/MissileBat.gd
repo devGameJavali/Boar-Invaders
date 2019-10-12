@@ -3,6 +3,13 @@ var life = 3
 var missile = preload("res://Enemies/MissileBatery(3)/Missile.tscn")
 var can_missile1 = true
 var can_missile2 = true
+
+func _physics_process(delta):
+	if is_queued_for_deletion():
+		var a =$"../../..".get_children()
+		for i in a:
+			if i.is_in_group("missile"):
+				i.queue_free()
 func _ready():
 	life = 10
 	$Scaler/TextureProgress.value = life

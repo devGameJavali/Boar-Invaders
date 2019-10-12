@@ -47,7 +47,10 @@ func _on_start_timeout():
 	pass # Replace with function body.
 
 func _next_shoot():
-	if father.can_missile1 == true:
-		father.can_missile2 = true
-	else:
-		father.can_missile1 = true
+	var a = get_parent().get_children()
+	for i in a:
+		if i== father:
+			if father.can_missile1 == true:
+				father.can_missile2 = true
+			else:
+				father.can_missile1 = true
