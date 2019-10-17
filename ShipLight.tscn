@@ -1,18 +1,12 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Ship/Ship.gd" type="Script" id=1]
-[ext_resource path="res://Ship/COLOR.png" type="Texture" id=2]
-[ext_resource path="res://Ship/BODY.png" type="Texture" id=3]
-[ext_resource path="res://Ship/BURNING.png" type="Texture" id=4]
-[ext_resource path="res://Ship/Shield.gd" type="Script" id=5]
-[ext_resource path="res://Ship/SHIELD.png" type="Texture" id=6]
-[ext_resource path="res://Ship/Interface.gd" type="Script" id=7]
-[ext_resource path="res://Classes/Samples/LifeBarFRONT.png" type="Texture" id=8]
-[ext_resource path="res://Classes/Samples/LifeBarBack.png" type="Texture" id=9]
+[ext_resource path="res://Ship/mig_17.png" type="Texture" id=2]
+[ext_resource path="res://Ship/Shield.gd" type="Script" id=3]
+[ext_resource path="res://Ship/SHIELD.png" type="Texture" id=4]
 
 [node name="Ship" type="KinematicBody2D" groups=[
 "gravity",
-"ship",
 "player",
 ]]
 scale = Vector2( 2, 2 )
@@ -38,19 +32,10 @@ position = Vector2( -10, -29 )
 position = Vector2( 10, -29 )
 
 [node name="sprites" type="Node2D" parent="."]
-editor/display_folded = true
 scale = Vector2( 0.6, 0.6 )
 
-[node name="Color" type="Sprite" parent="sprites"]
+[node name="Sprite" type="Sprite" parent="sprites"]
 texture = ExtResource( 2 )
-
-[node name="Body" type="Sprite" parent="sprites"]
-texture = ExtResource( 3 )
-
-[node name="Burn" type="Sprite" parent="sprites"]
-visible = false
-position = Vector2( 0, 76 )
-texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="." groups=[
 "player",
@@ -63,11 +48,10 @@ wait_time = 0.1
 autostart = true
 
 [node name="Shield" type="Area2D" parent="." groups=[
-"shield",
 "player",
+"shield",
 ]]
-editor/display_folded = true
-script = ExtResource( 5 )
+script = ExtResource( 3 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shield"]
 polygon = PoolVector2Array( -63, 0, -63, -17, -56, -39, -32, -53, 0, -56, 32, -52, 56, -42, 65, -22, 65, 0 )
@@ -77,27 +61,9 @@ visible = false
 position = Vector2( 1, -29 )
 scale = Vector2( 0.5, 0.5 )
 z_index = -1
-texture = ExtResource( 6 )
+texture = ExtResource( 4 )
 
 [node name="Tween" type="Tween" parent="."]
-
-[node name="Interface" type="CanvasLayer" parent="."]
-script = ExtResource( 7 )
-
-[node name="Container" type="Container" parent="Interface"]
-margin_left = 36.0
-margin_right = 76.0
-margin_bottom = 40.0
-
-[node name="VSplitContainer" type="VSplitContainer" parent="Interface/Container"]
-margin_right = 40.0
-margin_bottom = 40.0
-
-[node name="TextureProgress" type="TextureProgress" parent="Interface/Container/VSplitContainer"]
-margin_right = 200.0
-margin_bottom = 50.0
-texture_under = ExtResource( 8 )
-texture_progress = ExtResource( 9 )
 
 [connection signal="timeout" from="shootL" to="." method="_on_shootL_timeout"]
 [connection signal="timeout" from="shootR" to="." method="_on_shootR_timeout"]

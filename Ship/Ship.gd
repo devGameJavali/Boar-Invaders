@@ -1,3 +1,4 @@
+
 extends KinematicBody2D
 enum anim {IDLE=0,FORWARD=0,FORWARDLEFT=-45,FORWARDRIGHT=45,BACKWARD=180,BACKWARDLEFT=-135,BACKWARDRIGHT=135,LEFT=-90,RIGHT=90}
 var can_shootL:bool = true
@@ -10,14 +11,16 @@ var i = 0
 var bullet = preload("res://Ship/Bullet/LaserBullet.tscn")
 var bomb = preload("res://Ship/Bullet/Bomb.tscn")
 
-const SPEED:int = 400
-const ACEL = 25
+var SPEED:int = 400
+var ACEL = 25
 const REST = 5
+var steer = 3
+var life = 100
 
 var velocity:Vector2
 
 func _ready():
-
+	take_damage(0)
 	if $"../..".name == "Customization":
 		set_physics_process(false)
 	print(deg2rad(90))
@@ -53,9 +56,9 @@ func _physics_process(delta):
 			$"Shield"/Sprite.hide()
 	#velocity = Vector2(0,0)
 	if Input.is_action_pressed("ui_right"):
-		rotation_degrees+=3
+		rotation_degrees+=steer
 	elif Input.is_action_pressed("ui_left"):
-		rotation_degrees-=3
+		rotation_degrees-=steer
 	if Input.is_action_pressed("ui_up"):
 		$sprites/Burn.show()
 		velocity += (Vector2(100,0).rotated(deg2rad(rotation_degrees-90)).normalized())*8
@@ -156,3 +159,9 @@ func _on_Tween_tween_completed(object, key):
 	$sprites/Burn.hide()
 	dashing = false
 	pass # Replace with function body.
+
+
+func take_damage(dam):
+	life -= dam
+	$Interface.update_life(life)
+	print(life)
