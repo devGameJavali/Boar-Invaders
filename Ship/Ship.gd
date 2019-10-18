@@ -29,7 +29,7 @@ func _ready():
 		set_physics_process(false)
 	print(deg2rad(90))
 	print(rad2deg(1.5708))
-	OS.low_processor_usage_mode = true
+	#OS.low_processor_usage_mode = true
 	get_color()
 
 #movimentação

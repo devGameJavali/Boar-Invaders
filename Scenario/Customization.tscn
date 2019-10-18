@@ -48,7 +48,6 @@ text = "READY"
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 600, 546 )
 current = true
-
 [connection signal="color_changed" from="Container/Container/ColorPicker" to="Container/Container/ColorPicker" method="_on_ColorPicker_color_changed"]
 [connection signal="pressed" from="Container/Button" to="Container/Container/ColorPicker" method="_on_Button_pressed"]
 [connection signal="pressed" from="Container/Button2" to="Container/Container/ColorPicker" method="_on_Button2_pressed"]

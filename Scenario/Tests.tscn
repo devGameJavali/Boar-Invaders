@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scenario/Elements/Wall.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemies/double(2)/Double.tscn" type="PackedScene" id=2]
@@ -11,12 +11,15 @@
 [ext_resource path="res://Ship/Ship.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenario/Elements/Repair/RepairStation.tscn" type="PackedScene" id=10]
 
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 193.48, 1763.55 )
+
 [node name="Tests" type="Node2D"]
 
 [node name="Scenario" type="Node" parent="."]
 
 [node name="Wall" parent="Scenario" instance=ExtResource( 1 )]
-position = Vector2( 800, 3680 )
+position = Vector2( 959.426, 4016.57 )
 dime = Vector2( 50, 50 )
 
 [node name="Enemies" type="Node" parent="."]
@@ -25,27 +28,15 @@ editor/display_folded = true
 [node name="Doubles" type="Node" parent="Enemies"]
 
 [node name="Double" parent="Enemies/Doubles" instance=ExtResource( 2 )]
-position = Vector2( 416, 2016 )
+position = Vector2( 212.289, 2069.14 )
 rotation = -1.5708
-
-[node name="Double2" parent="Enemies/Doubles" instance=ExtResource( 2 )]
-position = Vector2( 448, 3040 )
-rotation = -1.5708
-
-[node name="Double3" parent="Enemies/Doubles" instance=ExtResource( 2 )]
-position = Vector2( 242.577, 1006.38 )
-rotation = -1.5708
-
-[node name="Double4" parent="Enemies/Doubles" instance=ExtResource( 2 )]
-position = Vector2( 1925, 989.11 )
-rotation = 1.5708
 
 [node name="Double5" parent="Enemies/Doubles" instance=ExtResource( 2 )]
-position = Vector2( 1856, 2208 )
+position = Vector2( 1801.87, 2481.58 )
 rotation = 1.5708
 
 [node name="Double6" parent="Enemies/Doubles" instance=ExtResource( 2 )]
-position = Vector2( 1856, 2912 )
+position = Vector2( 1801.87, 1961.35 )
 rotation = 1.5708
 
 [node name="Missiles" type="Node" parent="Enemies"]
@@ -54,45 +45,61 @@ script = ExtResource( 3 )
 [node name="MissileBat" parent="Enemies/Missiles" instance=ExtResource( 4 )]
 position = Vector2( 766.107, 308.228 )
 
+[node name="MissileBat2" parent="Enemies/Missiles" instance=ExtResource( 4 )]
+position = Vector2( 1200.1, 317.085 )
+
+[node name="MissileBat3" parent="Enemies/Missiles" instance=ExtResource( 4 )]
+position = Vector2( 358.686, 334.799 )
+
 [node name="shooter" type="Timer" parent="Enemies/Missiles"]
 wait_time = 2.0
 autostart = true
 
 [node name="Army" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1196.64, 989.11 )
+position = Vector2( 119.818, 1059.03 )
 
 [node name="Rotor" parent="." instance=ExtResource( 6 )]
-position = Vector2( 1536, 1950 )
+position = Vector2( 492.845, 1847.65 )
 
 [node name="Rotor2" parent="." instance=ExtResource( 6 )]
-position = Vector2( 1568, 2720 )
+position = Vector2( 1237.34, 1810.68 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-editor/display_folded = true
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2( 3072, 1536 )
+motion_mirroring = Vector2( 0, 1536 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+scale = Vector2( 0.9375, 1 )
 texture = ExtResource( 7 )
 centered = false
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2( 0.25, 0.25 )
-motion_mirroring = Vector2( 3072, 1536 )
+motion_mirroring = Vector2( 0, 1536 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
+scale = Vector2( 0.9375, 1 )
 texture = ExtResource( 8 )
 centered = false
 
 [node name="Ship" parent="." instance=ExtResource( 9 )]
 editor/display_folded = true
-position = Vector2( 2624, 3808 )
+position = Vector2( 1067.63, 5040 )
 
 [node name="RepairStation" parent="." instance=ExtResource( 10 )]
-position = Vector2( 3168, 3840 )
+position = Vector2( 925.994, 759.015 )
 scale = Vector2( 1.5, 1.5 )
 
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( -38.7706, 1373.66 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 3072.58, 1400.8 )
+shape = SubResource( 1 )
 [connection signal="timeout" from="Enemies/Missiles/shooter" to="Enemies/Missiles" method="_on_shooter_timeout"]
 
 [editable path="Ship"]
