@@ -2,6 +2,7 @@ extends Area2D
 
 export var speed = 350
 export var steer_force = 35.0
+const attack = 20
 
 var velocity = Vector2.ZERO
 var acceleration = Vector2.ZERO
@@ -35,9 +36,13 @@ func _target():
 
 func _on_Missile_body_entered(body):
 	if body.is_in_group("player"):
-		#$"../Interface/VSplitContainer/life"._update(-5)
-		_next_shoot()
-		queue_free()
+		if body.is_in_group("ship"):
+			body.take_damage(attack)
+			_next_shoot()
+			queue_free()
+		elif body.is_in_group("bullet"):
+			queue_free()
+			body.queue_free()
 	pass # Replace with function body.
 
 func _on_start_timeout():

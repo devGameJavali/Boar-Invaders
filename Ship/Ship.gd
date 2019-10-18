@@ -4,7 +4,7 @@ enum anim {IDLE=0,FORWARD=0,FORWARDLEFT=-45,FORWARDRIGHT=45,BACKWARD=180,BACKWAR
 var can_shootL:bool = true
 var can_shootR:bool = true
 
-var dashing = false
+var imobe = false
 
 var i = 0
 
@@ -16,11 +16,15 @@ var ACEL = 25
 const REST = 5
 var steer = 3
 var life = 100
+var energy = 1000
+var repT = 3
 
 var velocity:Vector2
 
 func _ready():
+	$"Interface/Container/VSplitContainer/Repairs/Label".text = str(repT)
 	take_damage(0)
+	$Shield.emit_signal("update_energy",energy)
 	if $"../..".name == "Customization":
 		set_physics_process(false)
 	print(deg2rad(90))
@@ -30,22 +34,32 @@ func _ready():
 
 #movimentação
 func _physics_process(delta):
-	if dashing == true:
+	if imobe == true:
 		return
+	
+	
 	
 	if Input.is_action_just_pressed("ui_page_up"):
 		$sprites/Burn.show()
-		dashing = true
+		imobe = true
 		_dash()
 	
-	if $"..".name == "Tests":
-		$"../CanvasLayer/TextureProgress".value = Root.energy
-	if Input.is_action_just_pressed("space") and Root.energy > 100:
-		Root.energy -=100
+	if Input.is_action_just_pressed("space") and energy > 100:
+		$Interface.update_shield(200)
 		var b = bomb.instance()
 		get_node("..").add_child(b)
 		b.position = global_position
 		b.set_angle(rotation)
+	
+	if Input.is_action_pressed("mouseL") and can_shootL==true:
+		shoot($weL.global_position)
+		can_shootL = false
+		$shootL.start()
+	elif Input.is_action_pressed("mouseR")and can_shootR==true:
+		shoot($weR.global_position)
+		can_shootR = false
+		$shootR.start()
+	
 	
 	if Input.is_action_just_pressed("enter"):
 		if $"Shield".active== false:
@@ -65,7 +79,7 @@ func _physics_process(delta):
 	elif Input.is_action_pressed("ui_down"):
 		velocity -= (Vector2(100,0).rotated(deg2rad(rotation_degrees-90)).normalized())*8
 	else:
-		if dashing == false:
+		if imobe == false:
 			$sprites/Burn.hide()
 		velocity.y = inertia(velocity.y)
 		velocity.x = inertia(velocity.x)
@@ -88,20 +102,9 @@ func inertia(vel):
 	return vel
 
 #tiros
-func _input(event):
-	if $"..".name != "Container":
-		if event is InputEventMouseButton and can_shootL == true:
-			if event.is_action_pressed("mouseL"):
-				shoot($weL.global_position)
-				can_shootL = false
-				$shootL.start()
-		if event is InputEventMouseButton and can_shootR == true:
-			if event.is_action_pressed("mouseR"):
-				shoot($weR.global_position)
-				can_shootR = false
-				$shootR.start()
-		if event is InputEventMouseMotion:
-			var target = rad2deg(get_angle_to(get_global_mouse_position()))+90
+#func _input(event):
+		#if event is InputEventMouseMotion:
+			#var target = rad2deg(get_angle_to(get_global_mouse_position()))+90
 			#if target<0:
 				#rotation_degrees += min(target*0.05,-1)
 			#else:
@@ -157,11 +160,26 @@ func _dash():
 
 func _on_Tween_tween_completed(object, key):
 	$sprites/Burn.hide()
-	dashing = false
+	imobe = false
 	pass # Replace with function body.
 
 
 func take_damage(dam):
 	life -= dam
 	$Interface.update_life(life)
-	print(life)
+	if life<0:
+		#get_tree().change_scene("res://Game Over.tscn")
+		print("morreu")
+
+
+
+func repair():
+	imobe = true
+	repT-=1
+	$"Interface/Container/VSplitContainer/Repairs/Label".text = str(repT)
+	var bar = $Interface/Container/VSplitContainer/TextureProgress
+	life = 100
+	var t = $Tween
+	t.interpolate_property(bar,"value",bar.value,100,10.0,Tween.TRANS_CUBIC,Tween.EASE_IN)
+	t.start()
+	

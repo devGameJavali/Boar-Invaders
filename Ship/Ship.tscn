@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Ship/Ship.gd" type="Script" id=1]
 [ext_resource path="res://Ship/COLOR.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Ship/Interface.gd" type="Script" id=7]
 [ext_resource path="res://Classes/Samples/LifeBarFRONT.png" type="Texture" id=8]
 [ext_resource path="res://Classes/Samples/LifeBarBack.png" type="Texture" id=9]
+[ext_resource path="res://Scenario/Interface/SCrew.png" type="Texture" id=10]
 
 [node name="Ship" type="KinematicBody2D" groups=[
 "gravity",
@@ -66,7 +67,6 @@ autostart = true
 "shield",
 "player",
 ]]
-editor/display_folded = true
 script = ExtResource( 5 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shield"]
@@ -99,9 +99,37 @@ margin_bottom = 50.0
 texture_under = ExtResource( 8 )
 texture_progress = ExtResource( 9 )
 
+[node name="ProgressBar" type="ProgressBar" parent="Interface/Container/VSplitContainer"]
+margin_top = 62.0
+margin_right = 200.0
+margin_bottom = 76.0
+value = 100.0
+
+[node name="Repairs" type="Sprite" parent="Interface/Container/VSplitContainer"]
+position = Vector2( 280, 44 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 10 )
+
+[node name="Label" type="Label" parent="Interface/Container/VSplitContainer/Repairs"]
+margin_left = 5.0
+margin_top = -9.5
+margin_right = 45.0
+margin_bottom = 21.5
+text = "13"
+
+[node name="Label" type="Label" parent="Interface"]
+visible = false
+margin_left = 940.0
+margin_top = 742.0
+margin_right = 1060.0
+margin_bottom = 773.0
+text = "PRESS R TO REPAIR
+"
+
 [connection signal="timeout" from="shootL" to="." method="_on_shootL_timeout"]
 [connection signal="timeout" from="shootR" to="." method="_on_shootR_timeout"]
 [connection signal="timeout" from="energy" to="." method="_1_sec_function"]
 [connection signal="area_entered" from="Shield" to="Shield" method="_on_Shield_area_entered"]
 [connection signal="body_entered" from="Shield" to="Shield" method="_on_Shield_body_entered"]
+[connection signal="update_energy" from="Shield" to="Interface" method="update_shield"]
 [connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]

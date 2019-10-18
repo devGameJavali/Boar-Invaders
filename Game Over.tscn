@@ -1,0 +1,11 @@
+[gd_scene format=2]
+
+[node name="Game Over" type="Node2D"]
+position = Vector2( 248, 472 )
+scale = Vector2( 12, 12 )
+
+[node name="Label" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "VOCÊ PERDEU!!!!!!!!!!"
+
