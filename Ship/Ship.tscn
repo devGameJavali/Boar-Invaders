@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Ship/Ship.gd" type="Script" id=1]
 [ext_resource path="res://Ship/COLOR.png" type="Texture" id=2]
@@ -10,11 +10,12 @@
 [ext_resource path="res://Classes/Samples/LifeBarFRONT.png" type="Texture" id=8]
 [ext_resource path="res://Classes/Samples/LifeBarBack.png" type="Texture" id=9]
 [ext_resource path="res://Scenario/Interface/SCrew.png" type="Texture" id=10]
+[ext_resource path="res://Ship/Bullet/sf_laser_15.wav" type="AudioStream" id=11]
 
 [node name="Ship" type="KinematicBody2D" groups=[
 "gravity",
-"ship",
 "player",
+"ship",
 ]]
 scale = Vector2( 2, 2 )
 collision_layer = 7
@@ -58,19 +59,12 @@ visible = false
 position = Vector2( 0, 76 )
 texture = ExtResource( 4 )
 
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="." groups=[
-"player",
-]]
-visible = false
-polygon = PoolVector2Array( -0.266251, -50.4056, -14, -4, -36, 24, -22.0696, 44.506, 24.0157, 44.0183, 36, 24, 14, -4 )
-
 [node name="energy" type="Timer" parent="."]
-wait_time = 0.1
 autostart = true
 
 [node name="Shield" type="Area2D" parent="." groups=[
-"shield",
 "player",
+"shield",
 ]]
 script = ExtResource( 5 )
 
@@ -132,6 +126,15 @@ margin_right = 1060.0
 margin_bottom = 773.0
 text = "PRESS R TO REPAIR
 "
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="." groups=[
+"player",
+]]
+polygon = PoolVector2Array( -0.266251, -50.4056, -14, -4, -36, 24, -22.0696, 44.506, 24.0157, 44.0183, 36, 24, 14, -4 )
+
+[node name="ShootSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+
 [connection signal="timeout" from="shootL" to="." method="_on_shootL_timeout"]
 [connection signal="timeout" from="shootR" to="." method="_on_shootR_timeout"]
 [connection signal="timeout" from="energy" to="." method="_1_sec_function"]

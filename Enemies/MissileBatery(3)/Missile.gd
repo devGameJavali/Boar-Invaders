@@ -46,6 +46,7 @@ func _on_Missile_body_entered(body):
 	pass # Replace with function body.
 
 func _on_start_timeout():
+	$Launch.play()
 	set_physics_process(true)
 	$"Node/track".set_physics_process(true)
 	$start.queue_free()
@@ -59,3 +60,8 @@ func _next_shoot():
 				father.can_missile2 = true
 			else:
 				father.can_missile1 = true
+
+
+func _on_Launch_finished():
+	$Launch.queue_free()
+	pass # Replace with function body.

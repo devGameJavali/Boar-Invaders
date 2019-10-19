@@ -16,7 +16,7 @@ var ACEL = 25
 const REST = 5
 var steer = 3
 var life = 100
-var energy = 1000
+var energy = 500
 var repT = 3
 
 var velocity:Vector2
@@ -24,6 +24,7 @@ var velocity:Vector2
 func _ready():
 	$"Interface/Container/VSplitContainer/Repairs/Label".text = str(repT)
 	take_damage(0)
+	print(energy)
 	$Shield.emit_signal("update_energy",energy)
 	if $"../..".name == "Customization":
 		set_physics_process(false)
@@ -55,19 +56,21 @@ func _physics_process(delta):
 		shoot($weL.global_position)
 		can_shootL = false
 		$shootL.start()
+		$ShootSound.play()
 	elif Input.is_action_pressed("mouseR")and can_shootR==true:
 		shoot($weR.global_position)
 		can_shootR = false
 		$shootR.start()
+		$ShootSound.play()
 	
 	
 	if Input.is_action_just_pressed("enter"):
+		if energy <100:
+			return
 		if $"Shield".active== false:
 			$"Shield".active= true
-			$"Shield"/Sprite.show()
 		else:
 			$"Shield".active= false
-			$"Shield"/Sprite.hide()
 	#velocity = Vector2(0,0)
 	if Input.is_action_pressed("ui_right"):
 		rotation_degrees+=steer
@@ -143,10 +146,11 @@ func _1_sec_function():
 	i+= 1
 	if i ==16:
 		i = 0
-	if Root.energy<1000:
-		Root.energy += 10
+	if energy<500:
+		energy += 50
 	if $"Shield".active == true:
-		Root.energy -=5
+		energy -=55
+	$Interface.update_shield(energy)
 	pass # Replace with function body.
 
 func _dash():

@@ -1,6 +1,6 @@
 extends CanvasLayer
 var max_life = 100
-var max_energy = 1000
+var max_energy = 500
 
 func _ready():
 	$Container/VSplitContainer/ProgressBar.max_value = max_energy

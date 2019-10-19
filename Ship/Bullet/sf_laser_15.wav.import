@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sf_laser_15.wav-54182ada9cff5ebd0e0c379e30d7a4c8.sample"
+
+[deps]
+
+source_file="res://Ship/Bullet/sf_laser_15.wav"
+dest_files=[ "res://.import/sf_laser_15.wav-54182ada9cff5ebd0e0c379e30d7a4c8.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

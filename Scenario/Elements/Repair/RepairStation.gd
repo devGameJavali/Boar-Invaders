@@ -18,8 +18,7 @@ func _on_Area_body_entered(body):
 		get_node(str(get_path_to(body))+"/Interface/Label").visible = true
 		can_repair=true
 		last_body = body
-	elif body.name != "RepairStation":
-		print(body.name)
+	elif body.name != "RepairStation" and body.name != "Shield":
 		body.queue_free()
 		return
 	pass # Replace with function body.

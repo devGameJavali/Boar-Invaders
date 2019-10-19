@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Enemies/MissileBatery(3)/Missile.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/MissileBatery(3)/Sem título.png" type="Texture" id=2]
 [ext_resource path="res://Enemies/MissileBatery(3)/track.gd" type="Script" id=3]
+[ext_resource path="res://Enemies/MissileBatery(3)/Bottle Rocket-SoundBible.com-332895117.wav" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 20 )
@@ -45,5 +46,9 @@ texture_mode = -1288166990
 joint_mode = 2
 script = ExtResource( 3 )
 
+[node name="Launch" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+
 [connection signal="body_entered" from="." to="." method="_on_Missile_body_entered"]
 [connection signal="timeout" from="start" to="." method="_on_start_timeout"]
+[connection signal="finished" from="Launch" to="." method="_on_Launch_finished"]
