@@ -1,6 +1,6 @@
 extends KinematicBody2D
 var velocity:Vector2 = Vector2(0,600)
-var attack = 5
+var attack = 3
 
 func _physics_process(delta):
 	var hentai

@@ -1,5 +1,5 @@
 extends CanvasLayer
-var max_life = 100
+var max_life = 200
 var max_energy = 500
 
 func _ready():

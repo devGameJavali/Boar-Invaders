@@ -15,7 +15,7 @@ var SPEED:int = 400
 var ACEL = 25
 const REST = 5
 var steer = 3
-var life = 100
+var life = 200
 var energy = 500
 var repT = 3
 
@@ -174,15 +174,19 @@ func take_damage(dam):
 	if life<0:
 		#get_tree().change_scene("res://Game Over.tscn")
 		print("morreu")
+	elif life<100:
+		if SPEED == 400:
+			SPEED = SPEED/2
 
 
 
 func repair():
+	SPEED = 400
 	imobe = true
 	repT-=1
 	$"Interface/Container/VSplitContainer/Repairs/Label".text = str(repT)
 	var bar = $Interface/Container/VSplitContainer/TextureProgress
-	life = 100
+	life = 200
 	var t = $Tween
 	t.interpolate_property(bar,"value",bar.value,100,10.0,Tween.TRANS_CUBIC,Tween.EASE_IN)
 	t.start()
