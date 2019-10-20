@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var block:PackedScene = preload("res://Scenario/Elements/Block.tscn")
+onready var block:PackedScene = preload("res://Scenario/Elements/Wall/Block.tscn")
 export var dime:Vector2 = Vector2(10,10) 
 
 func _ready():

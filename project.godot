@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "bullet",
+"language": "GDScript",
+"path": "res://Classes/bullets.gd"
+}, {
 "base": "StaticBody2D",
 "class": "enemy",
 "language": "GDScript",
 "path": "res://Classes/Enemyt.gd"
 } ]
 _global_script_class_icons={
+"bullet": "",
 "enemy": ""
 }
 
@@ -36,7 +42,7 @@ gdscript/warnings/unassigned_variable=false
 
 window/size/width=1920
 window/size/height=1080
-window/stretch/mode="viewport"
+window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
 [importer_defaults]
@@ -117,7 +123,3 @@ R={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":82,"unicode":0,"echo":false,"script":null)
  ]
 }
-
-[rendering]
-
-environment/default_environment="res://old/default_env.tres"
