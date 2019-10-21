@@ -24,12 +24,9 @@ var velocity:Vector2
 func _ready():
 	$"Interface/Container/VSplitContainer/Repairs/Label".text = str(repT)
 	take_damage(0)
-	print(energy)
 	$Shield.emit_signal("update_energy",energy)
 	if $"../..".name == "Customization":
 		set_physics_process(false)
-	print(deg2rad(90))
-	print(rad2deg(1.5708))
 	#OS.low_processor_usage_mode = true
 	get_color()
 

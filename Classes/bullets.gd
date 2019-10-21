@@ -7,7 +7,6 @@ func _physics_process(delta):
 	var hentai
 	hentai = move_and_collide(velocity*delta)
 	if(hentai):
-		print(hentai.collider.name)
 		if hentai.collider.is_in_group("bullet") or hentai.collider.is_in_group("enemy") :
 			queue_free()
 		elif hentai.collider.is_in_group("block"):

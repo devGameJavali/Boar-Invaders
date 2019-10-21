@@ -26,6 +26,7 @@ texture = ExtResource( 2 )
 [node name="Turret1" type="KinematicBody2D" parent="Turrets" groups=[
 "enemy",
 ]]
+editor/display_folded = true
 position = Vector2( 0, -225 )
 script = ExtResource( 3 )
 
@@ -39,28 +40,77 @@ position = Vector2( 30, 0 )
 shape = SubResource( 1 )
 
 [node name="Right" type="Position2D" parent="Turrets/Turret1"]
-position = Vector2( 100.602, 13 )
+position = Vector2( 110, 13 )
 
-[node name="Sprite" type="Sprite" parent="Turrets/Turret1/Right"]
-position = Vector2( -62.6017, -1.35505e-006 )
+[node name="cr1" type="Sprite" parent="Turrets/Turret1/Right"]
+position = Vector2( -72.0001, 0.500122 )
 rotation = 1.5708
 texture = ExtResource( 5 )
-offset = Vector2( 0, -31 )
+offset = Vector2( 0, -31.0001 )
+
+[node name="Tween" type="Tween" parent="Turrets/Turret1/Right"]
 
 [node name="Left" type="Position2D" parent="Turrets/Turret1"]
-position = Vector2( 100.602, -13 )
+position = Vector2( 110, -13 )
 
-[node name="Sprite" type="Sprite" parent="Turrets/Turret1/Left"]
-position = Vector2( -62.6017, -1 )
+[node name="cl1" type="Sprite" parent="Turrets/Turret1/Left"]
+position = Vector2( -72, -0.5 )
 rotation = 1.5708
 texture = ExtResource( 5 )
-offset = Vector2( 0, -31 )
+offset = Vector2( 0, -30.9999 )
 
-[node name="Tween" type="Tween" parent="Turrets/Turret1"]
+[node name="Tween" type="Tween" parent="Turrets/Turret1/Left"]
+
+[node name="SecondShoot" type="Timer" parent="Turrets/Turret1"]
+wait_time = 0.3
+one_shot = true
+
+[node name="Turret2" type="KinematicBody2D" parent="Turrets" groups=[
+"enemy",
+]]
+editor/display_folded = true
+position = Vector2( 0, -80 )
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="Turrets/Turret2"]
+rotation = 1.5708
+texture = ExtResource( 4 )
+offset = Vector2( 0, -30.5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Turrets/Turret2"]
+position = Vector2( 30, 0 )
+shape = SubResource( 1 )
+
+[node name="Right" type="Position2D" parent="Turrets/Turret2"]
+position = Vector2( 110, 13 )
+
+[node name="cr1" type="Sprite" parent="Turrets/Turret2/Right"]
+position = Vector2( -72.0001, 0.500122 )
+rotation = 1.5708
+texture = ExtResource( 5 )
+offset = Vector2( 0, -31.0001 )
+
+[node name="Tween" type="Tween" parent="Turrets/Turret2/Right"]
+
+[node name="Left" type="Position2D" parent="Turrets/Turret2"]
+position = Vector2( 110, -13 )
+
+[node name="cl1" type="Sprite" parent="Turrets/Turret2/Left"]
+position = Vector2( -72, -0.5 )
+rotation = 1.5708
+texture = ExtResource( 5 )
+offset = Vector2( 0, -30.9999 )
+
+[node name="Tween" type="Tween" parent="Turrets/Turret2/Left"]
+
+[node name="SecondShoot" type="Timer" parent="Turrets/Turret2"]
+wait_time = 0.3
+one_shot = true
 
 [node name="Turret3" type="KinematicBody2D" parent="Turrets" groups=[
 "enemy",
 ]]
+editor/display_folded = true
 position = Vector2( 0, 270 )
 script = ExtResource( 3 )
 
@@ -74,24 +124,30 @@ position = Vector2( 30, 0 )
 shape = SubResource( 1 )
 
 [node name="Right" type="Position2D" parent="Turrets/Turret3"]
-position = Vector2( 100.602, 13 )
+position = Vector2( 110, 13 )
 
-[node name="Sprite" type="Sprite" parent="Turrets/Turret3/Right"]
-position = Vector2( -62.6017, -1.35505e-006 )
+[node name="cr1" type="Sprite" parent="Turrets/Turret3/Right"]
+position = Vector2( -72.0001, 0.500122 )
 rotation = 1.5708
 texture = ExtResource( 5 )
-offset = Vector2( 0, -31 )
+offset = Vector2( 0, -31.0001 )
+
+[node name="Tween" type="Tween" parent="Turrets/Turret3/Right"]
 
 [node name="Left" type="Position2D" parent="Turrets/Turret3"]
-position = Vector2( 100.602, -13 )
+position = Vector2( 110, -13 )
 
-[node name="Sprite" type="Sprite" parent="Turrets/Turret3/Left"]
-position = Vector2( -62.6017, -1 )
+[node name="cl1" type="Sprite" parent="Turrets/Turret3/Left"]
+position = Vector2( -72, -0.5 )
 rotation = 1.5708
 texture = ExtResource( 5 )
-offset = Vector2( 0, -31 )
+offset = Vector2( 0, -30.9999 )
 
-[node name="Tween" type="Tween" parent="Turrets/Turret3"]
+[node name="Tween" type="Tween" parent="Turrets/Turret3/Left"]
+
+[node name="SecondShoot" type="Timer" parent="Turrets/Turret3"]
+wait_time = 0.3
+one_shot = true
 
 [node name="Timer1" type="Timer" parent="."]
 autostart = true
@@ -100,5 +156,14 @@ autostart = true
 wait_time = 0.2
 one_shot = true
 
+[connection signal="tween_completed" from="Turrets/Turret1/Right/Tween" to="Turrets/Turret1" method="_RightShootBack"]
+[connection signal="tween_completed" from="Turrets/Turret1/Left/Tween" to="Turrets/Turret1" method="_LeftShootBack"]
+[connection signal="timeout" from="Turrets/Turret1/SecondShoot" to="Turrets/Turret1" method="SecondShoot"]
+[connection signal="tween_completed" from="Turrets/Turret2/Right/Tween" to="Turrets/Turret2" method="_RightShootBack"]
+[connection signal="tween_completed" from="Turrets/Turret2/Left/Tween" to="Turrets/Turret2" method="_LeftShootBack"]
+[connection signal="timeout" from="Turrets/Turret2/SecondShoot" to="Turrets/Turret2" method="SecondShoot"]
+[connection signal="tween_completed" from="Turrets/Turret3/Right/Tween" to="Turrets/Turret3" method="_RightShootBack"]
+[connection signal="tween_completed" from="Turrets/Turret3/Left/Tween" to="Turrets/Turret3" method="_LeftShootBack"]
+[connection signal="timeout" from="Turrets/Turret3/SecondShoot" to="Turrets/Turret3" method="SecondShoot"]
 [connection signal="timeout" from="Timer1" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="Timer2" to="." method="_on_Timer2_timeout"]

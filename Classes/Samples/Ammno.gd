@@ -1,5 +1,5 @@
 extends bullet
 
 func _ready():
-	attack = 5
+	attack = 10
 	
