@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Cannon+5.wav-6d4dae8f46b7ced7a36df21fc057c12a.sample"
+
+[deps]
+
+source_file="res://Enemies/Dreadnought(BOSS)/Cannon+5.wav"
+dest_files=[ "res://.import/Cannon+5.wav-6d4dae8f46b7ced7a36df21fc057c12a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

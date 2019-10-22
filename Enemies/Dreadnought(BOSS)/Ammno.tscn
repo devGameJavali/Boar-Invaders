@@ -6,8 +6,14 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3.47259, 10 )
 
-[node name="Ammno" type="KinematicBody2D"]
+[node name="Ammno" type="KinematicBody2D" groups=[
+"bullet",
+"enemy",
+"dreadnought",
+]]
 scale = Vector2( 2.5, 2.5 )
+collision_layer = 2
+collision_mask = 4
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

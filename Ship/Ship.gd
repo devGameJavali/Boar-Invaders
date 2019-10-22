@@ -3,7 +3,6 @@ extends KinematicBody2D
 enum anim {IDLE=0,FORWARD=0,FORWARDLEFT=-45,FORWARDRIGHT=45,BACKWARD=180,BACKWARDLEFT=-135,BACKWARDRIGHT=135,LEFT=-90,RIGHT=90}
 var can_shootL:bool = true
 var can_shootR:bool = true
-
 var imobe = false
 
 var i = 0
@@ -15,7 +14,7 @@ var SPEED:int = 400
 var ACEL = 25
 const REST = 5
 var steer = 3
-var life = 200
+var life = 250
 var energy = 500
 var repT = 3
 

@@ -9,6 +9,7 @@
 extents = Vector2( 34, 30 )
 
 [node name="MissileBat" type="StaticBody2D" groups=[
+"body",
 "enemy",
 ]]
 position = Vector2( 226, 134 )

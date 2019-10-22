@@ -14,13 +14,12 @@ func _ready():
 	life = 10
 	$Scaler/TextureProgress.value = life
 	$Scaler/TextureProgress.max_value = life
-func damage():
-	life -= 1
+func damage(dam):
+	life -= dam
 	$Scaler/TextureProgress.value = life
 	if life < 1:
 		queue_free()
-		return true
-	return false
+	return true
 func _on_shooter_timeout():
 	if can_missile1 == true:
 		can_missile1 = false

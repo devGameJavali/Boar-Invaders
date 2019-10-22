@@ -12,6 +12,7 @@ extents = Vector2( 12.7198, 13.9267 )
 extents = Vector2( 18.2718, 2.91171 )
 
 [node name="Double" type="StaticBody2D" groups=[
+"body",
 "enemy",
 ]]
 scale = Vector2( 2, 2 )

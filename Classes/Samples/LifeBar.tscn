@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Classes/Samples/proBack.png" type="Texture" id=1]
+[ext_resource path="res://Classes/Samples/proFront.png" type="Texture" id=2]
+
+[node name="TextureProgress" type="TextureProgress"]
+margin_left = -27.712
+margin_top = -54.149
+margin_right = 24.288
+margin_bottom = -42.149
+texture_under = ExtResource( 1 )
+texture_progress = ExtResource( 2 )
+

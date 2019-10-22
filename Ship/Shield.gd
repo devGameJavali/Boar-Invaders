@@ -14,9 +14,12 @@ func _on_Shield_body_entered(body):
 		active = false
 		return
 	if body.is_in_group("enemy") and body.is_in_group("bullet"):
+		var damage = 40
+		if body.is_in_group("dreadnought"):
+			damage = 100
 		body.queue_free()
 		if active == true:
-			$"..".energy -= 40
+			$"..".energy -= damage
 			emit_signal("update_energy",$"..".energy)
 			#print(Root.energy)
 			

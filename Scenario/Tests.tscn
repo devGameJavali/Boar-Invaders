@@ -32,7 +32,7 @@ autostart = true
 position = Vector2( 492.845, 1847.65 )
 
 [node name="Rotor2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1237.34, 1810.68 )
+position = Vector2( 1824, 1810.68 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 editor/display_folded = true
@@ -65,9 +65,8 @@ position = Vector2( 925.994, 759.015 )
 scale = Vector2( 1.5, 1.5 )
 
 [node name="Dreadnought" parent="." instance=ExtResource( 8 )]
-position = Vector2( 1152, 2400 )
-collision_layer = 0
-collision_mask = 0
+position = Vector2( 1171.97, 2398.28 )
+rotation = -4.61191e-006
 
 [connection signal="timeout" from="Enemies/Missiles/shooter" to="Enemies/Missiles" method="_on_shooter_timeout"]
 

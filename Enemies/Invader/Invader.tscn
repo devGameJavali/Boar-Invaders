@@ -1,15 +1,15 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Enemies/Invader/Invader.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/Invader/ene_1.png" type="Texture" id=2]
 [ext_resource path="res://Enemies/Invader/nave_1_fogo.png" type="Texture" id=3]
-[ext_resource path="res://Classes/Samples/proBack.png" type="Texture" id=4]
-[ext_resource path="res://Classes/Samples/proFront.png" type="Texture" id=5]
+[ext_resource path="res://Classes/Samples/LifeBar.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 23.8612, 41.467 )
 
 [node name="Invader" type="StaticBody2D" groups=[
+"body",
 "enemy",
 ]]
 position = Vector2( 208.712, 182.149 )
@@ -55,15 +55,7 @@ position = Vector2( 55.5, -25.5 )
 texture = ExtResource( 3 )
 flip_h = true
 
-[node name="TextureProgress" type="TextureProgress" parent="."]
-margin_left = -27.712
-margin_top = -54.149
-margin_right = 24.288
-margin_bottom = -42.149
-texture_under = ExtResource( 4 )
-texture_progress = ExtResource( 5 )
-
-[node name="Tween" type="Tween" parent="TextureProgress"]
+[node name="TextureProgress" parent="." instance=ExtResource( 4 )]
 
 [connection signal="timeout" from="shoot" to="." method="_on_shoot_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

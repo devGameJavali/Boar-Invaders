@@ -1,6 +1,6 @@
 extends KinematicBody2D
 var velocity:Vector2 = Vector2(0,-800)
-
+var attack = 3
 
 func _physics_process(delta):
 	var hentai
@@ -16,11 +16,11 @@ func _physics_process(delta):
 #bullet to the front of velocity and then resets the velocity vector
 			velocity = velocity.bounce(hentai.normal)
 			rotation_degrees = rad2deg(velocity.angle())+90
-		elif hentai.collider.is_in_group("enemy"):
-			hentai.collider.damage()
+		elif hentai.collider.is_in_group("enemy") and hentai.collider.is_in_group("body"):
+			if hentai.collider.damage(attack)==true:
+				queue_free()
 			#if hentai.collider.damage()== true:
 				#$"../Interface/VSplitContainer/points"._update(1)
-			queue_free()
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()

@@ -15,12 +15,11 @@ func shoot(pos,father):
 	shoot.set_angle(rotation)
 func set_id(x,y):
 	id = Vector2(x,y)
-func damage():
-	life -=1
+func damage(dam):
+	life -=dam
 	$TextureProgress.value = life
 	if life < 1:
 		if name == "Invader":
 			$"..".idList[id.x][id.y] = 0
 		queue_free()
-		return true
-	return false
+	return true
