@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Enemies/Dreadnought(BOSS)/Dreadnought.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/Dreadnought(BOSS)/kiirov22.png" type="Texture" id=2]
 [ext_resource path="res://Enemies/Dreadnought(BOSS)/Turret1.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Enemies/Dreadnought(BOSS)/Body.gd" type="Script" id=4]
-[ext_resource path="res://Classes/Samples/LifeBar.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Enemies/Dreadnought(BOSS)/Cfogo.png" type="Texture" id=6]
+[ext_resource path="res://Enemies/Dreadnought(BOSS)/Capital.gd" type="Script" id=5]
+[ext_resource path="res://Classes/Samples/LifeBar.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Enemies/Dreadnought(BOSS)/Cfogo.png" type="Texture" id=7]
+[ext_resource path="res://Enemies/Dreadnought(BOSS)/Cannon+5.wav" type="AudioStream" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 61.0952, 114.54 )
@@ -53,6 +55,7 @@ polygon = PoolVector2Array( -50, 370, -100, 420, 100, 420, 50, 370, 100, 295, 10
 position = Vector2( 0, 70 )
 collision_layer = 524800
 collision_mask = 524800
+script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Capital"]
 shape = SubResource( 1 )
@@ -62,7 +65,7 @@ position = Vector2( 0, 70 )
 rotation = 1.5708
 scale = Vector2( 3, 2 )
 
-[node name="TextureProgress" parent="Node2D" instance=ExtResource( 5 )]
+[node name="TextureProgress" parent="Node2D" instance=ExtResource( 6 )]
 margin_left = -25.0
 margin_top = -37.5
 margin_right = 27.0
@@ -74,6 +77,9 @@ autostart = true
 
 [node name="Sprite2" type="Sprite" parent="."]
 position = Vector2( 0.429, 478 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
 [connection signal="timeout" from="Timer1" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="Respawn" to="." method="_on_Respawn_timeout"]

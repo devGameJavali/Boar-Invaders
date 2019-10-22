@@ -13,7 +13,7 @@ var bomb = preload("res://Ship/Bullet/Bomb.tscn")
 var SPEED:int = 400
 var ACEL = 25
 const REST = 5
-var steer = 3
+var steer = 2
 var life = 250
 var energy = 500
 var repT = 3
@@ -31,7 +31,6 @@ func _ready():
 
 #movimentação
 func _physics_process(delta):
-	print(Root.energy)
 	if imobe == true:
 		return
 	

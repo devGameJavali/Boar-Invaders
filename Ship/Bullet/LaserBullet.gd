@@ -6,6 +6,8 @@ func _physics_process(delta):
 	var body
 	body = move_and_collide(velocity*delta)
 	if(body):
+		if body.collider.is_in_group("capital"):
+			body.collider._capitalDamage()
 		if body.collider.is_in_group("bullet") or body.collider.is_in_group("missile") :
 			queue_free()
 		elif body.collider.is_in_group("block"):

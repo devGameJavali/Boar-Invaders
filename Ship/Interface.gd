@@ -8,6 +8,5 @@ func _ready():
 func update_life(life):
 	$Container/VSplitContainer/TextureProgress.value = life
 func update_shield(energy):
-	print(energy)
 	$Container/VSplitContainer/ProgressBar.value = energy
 
