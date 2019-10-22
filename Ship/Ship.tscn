@@ -14,11 +14,12 @@
 
 [node name="Ship" type="KinematicBody2D" groups=[
 "gravity",
-"player",
 "ship",
+"player",
 ]]
 scale = Vector2( 2, 2 )
-collision_mask = 7
+collision_layer = 17
+collision_mask = 23
 script = ExtResource( 1 )
 
 [node name="shootL" type="Timer" parent="."]
@@ -59,11 +60,12 @@ position = Vector2( 0, 76 )
 texture = ExtResource( 4 )
 
 [node name="energy" type="Timer" parent="."]
+wait_time = 0.1
 autostart = true
 
 [node name="Shield" type="Area2D" parent="." groups=[
-"player",
 "shield",
+"player",
 ]]
 script = ExtResource( 5 )
 
@@ -131,7 +133,6 @@ polygon = PoolVector2Array( -0.266251, -50.4056, -14, -4, -36, 24, -22.0696, 44.
 
 [node name="ShootSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
-
 [connection signal="timeout" from="shootL" to="." method="_on_shootL_timeout"]
 [connection signal="timeout" from="shootR" to="." method="_on_shootR_timeout"]
 [connection signal="timeout" from="energy" to="." method="_1_sec_function"]

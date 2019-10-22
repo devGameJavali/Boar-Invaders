@@ -7,8 +7,8 @@
 [ext_resource path="res://Classes/Samples/LifeBar.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Enemies/Dreadnought(BOSS)/Cfogo.png" type="Texture" id=6]
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 50, 100 )
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 61.0952, 114.54 )
 
 [node name="Dreadnought" type="Node2D" groups=[
 "enemy",
@@ -19,7 +19,6 @@ script = ExtResource( 1 )
 texture = ExtResource( 2 )
 
 [node name="Turrets" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="Turret1" parent="Turrets" instance=ExtResource( 3 )]
 position = Vector2( 0, -230 )
@@ -41,16 +40,22 @@ one_shot = true
 "body",
 "enemy",
 ]]
+collision_layer = 49200
+collision_mask = 49200
 script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Body"]
 polygon = PoolVector2Array( -50, 370, -100, 420, 100, 420, 50, 370, 100, 295, 100, -155, 0, -430, -100, -155, -100, 295 )
 
-[node name="Capital" type="Area2D" parent="."]
+[node name="Capital" type="KinematicBody2D" parent="." groups=[
+"capital",
+]]
 position = Vector2( 0, 70 )
+collision_layer = 524800
+collision_mask = 524800
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Capital"]
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2( 0, 70 )
@@ -70,7 +75,5 @@ autostart = true
 [node name="Sprite2" type="Sprite" parent="."]
 position = Vector2( 0.429, 478 )
 texture = ExtResource( 6 )
-
 [connection signal="timeout" from="Timer1" to="." method="_on_Timer_timeout"]
-[connection signal="body_entered" from="Capital" to="." method="_on_Capital_body_entered"]
 [connection signal="timeout" from="Respawn" to="." method="_on_Respawn_timeout"]

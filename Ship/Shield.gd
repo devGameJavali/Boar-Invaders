@@ -13,7 +13,7 @@ func _on_Shield_body_entered(body):
 	if $"..".energy<0:
 		active = false
 		return
-	if body.is_in_group("enemy") and body.is_in_group("bullet"):
+	if body.is_in_group("enemy") and (body.is_in_group("bullet")):
 		var damage = 40
 		if body.is_in_group("dreadnought"):
 			damage = 100

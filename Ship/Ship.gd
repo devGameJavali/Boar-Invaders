@@ -31,6 +31,7 @@ func _ready():
 
 #movimentação
 func _physics_process(delta):
+	print(Root.energy)
 	if imobe == true:
 		return
 	
@@ -41,8 +42,9 @@ func _physics_process(delta):
 		imobe = true
 		_dash()
 	
-	if Input.is_action_just_pressed("space") and energy > 100:
-		$Interface.update_shield(200)
+	if Input.is_action_just_pressed("space") and Root.energy > 200:
+		Root.energy -=200
+		$Interface.update_shield(Root.energy)
 		var b = bomb.instance()
 		get_node("..").add_child(b)
 		b.position = global_position
@@ -61,7 +63,7 @@ func _physics_process(delta):
 	
 	
 	if Input.is_action_just_pressed("enter"):
-		if energy <100:
+		if  Root.energy <100:
 			return
 		if $"Shield".active== false:
 			$"Shield".active= true
@@ -142,11 +144,11 @@ func _1_sec_function():
 	i+= 1
 	if i ==16:
 		i = 0
-	if energy<500:
-		energy += 50
+	if  Root.energy<996:
+		Root.energy += 5
 	if $"Shield".active == true:
-		energy -=55
-	$Interface.update_shield(energy)
+		Root.energy -=5.5
+	$Interface.update_shield(Root.energy)
 	pass # Replace with function body.
 
 func _dash():

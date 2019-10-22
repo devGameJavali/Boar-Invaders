@@ -4,24 +4,24 @@ var velocity:Vector2 = Vector2(0,600)
 var attack = 3
 
 func _physics_process(delta):
-	var hentai
-	hentai = move_and_collide(velocity*delta)
-	if(hentai):
-		if hentai.collider.is_in_group("bullet") or hentai.collider.is_in_group("enemy") :
+	var body
+	body = move_and_collide(velocity*delta)
+	if(body):
+		if body.collider.is_in_group("bullet") or body.collider.is_in_group("enemy") :
 			queue_free()
-		elif hentai.collider.is_in_group("block"):
-			hentai.collider.queue_free()
+		elif body.collider.is_in_group("block"):
+			body.collider.queue_free()
 			queue_free()
-		elif hentai.collider.is_in_group("reflect"):
+		elif body.collider.is_in_group("reflect"):
 #changes the velocity vector the consider the reflection, then rotates the 
 #bullet to the front of velocity and then resets the velocity vector
-			velocity = velocity.bounce(hentai.normal)
+			velocity = velocity.bounce(body.normal)
 			rotation_degrees = rad2deg(velocity.angle())+90
-		if hentai.collider.is_in_group("player") and hentai.collider.is_in_group("ship"):
+		if body.collider.is_in_group("player") and body.collider.is_in_group("ship"):
 			queue_free()
-			hentai.collider.take_damage(attack)
-		elif hentai.collider.is_in_group("shield"):
-			if hentai.collider.hold_damage(20)==true:
+			body.collider.take_damage(attack)
+		elif body.collider.is_in_group("shield"):
+			if body.collider.hold_damage(20)==true:
 				queue_free()
 
 

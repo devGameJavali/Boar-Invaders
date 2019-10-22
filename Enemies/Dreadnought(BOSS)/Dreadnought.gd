@@ -24,21 +24,16 @@ func _on_Timer_timeout():
 	pass # Replace with function body.
 
 
-
-func _on_Capital_body_entered(body):
-	if body.name == "LaserBullet":
-		body.queue_free()
-		life-=2
-		$"Node2D/TextureProgress".value = life
-		if life<1:
-			queue_free()
-			
+func _capitalDamage():
+	life-=2
+	$"Node2D/TextureProgress".value = life
+	if life<1:
+		queue_free()
 	pass # Replace with function body.
 
 
 func _on_Respawn_timeout():
 	for i in range(3):
-		print(T)
 		if T[i] == 0:
 			T[i] = 1
 			match i:

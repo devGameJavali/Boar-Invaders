@@ -3,21 +3,21 @@ var velocity:Vector2 = Vector2(0,-800)
 var attack = 3
 
 func _physics_process(delta):
-	var hentai
-	hentai = move_and_collide(velocity*delta)
-	if(hentai):
-		if hentai.collider.is_in_group("bullet") or hentai.collider.is_in_group("missile") :
+	var body
+	body = move_and_collide(velocity*delta)
+	if(body):
+		if body.collider.is_in_group("bullet") or body.collider.is_in_group("missile") :
 			queue_free()
-		elif hentai.collider.is_in_group("block"):
-			hentai.collider.queue_free()
+		elif body.collider.is_in_group("block"):
+			body.collider.queue_free()
 			queue_free()
-		elif hentai.collider.is_in_group("reflect"):
+		elif body.collider.is_in_group("reflect"):
 #changes the velocity vector the consider the reflection, then rotates the 
 #bullet to the front of velocity and then resets the velocity vector
-			velocity = velocity.bounce(hentai.normal)
+			velocity = velocity.bounce(body.normal)
 			rotation_degrees = rad2deg(velocity.angle())+90
-		elif hentai.collider.is_in_group("enemy") and hentai.collider.is_in_group("body"):
-			if hentai.collider.damage(attack)==true:
+		elif body.collider.is_in_group("enemy") and body.collider.is_in_group("body"):
+			if body.collider.damage(attack)==true:
 				queue_free()
 			#if hentai.collider.damage()== true:
 				#$"../Interface/VSplitContainer/points"._update(1)
