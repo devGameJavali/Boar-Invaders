@@ -81,5 +81,6 @@ texture = ExtResource( 7 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 8 )
+
 [connection signal="timeout" from="Timer1" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="Respawn" to="." method="_on_Respawn_timeout"]

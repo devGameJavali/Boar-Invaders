@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenario/Menus/Main Menu.gd" type="Script" id=1]
+[ext_resource path="res://Scenario/Menus/Principal.png" type="Texture" id=2]
+[ext_resource path="res://Scenario/Menus/Quit Game.png" type="Texture" id=3]
+[ext_resource path="res://Scenario/Menus/New Game.png" type="Texture" id=4]
+[ext_resource path="res://Scenario/Menus/Automation.wav" type="AudioStream" id=5]
+
+[node name="Main Menu" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 960, 540 )
+texture = ExtResource( 2 )
+
+[node name="Quit" type="Button" parent="."]
+margin_left = 1350.0
+margin_top = 600.0
+margin_right = 1680.0
+margin_bottom = 659.0
+icon = ExtResource( 3 )
+
+[node name="New" type="Button" parent="."]
+margin_left = 1350.0
+margin_top = 508.807
+margin_right = 1680.0
+margin_bottom = 567.807
+icon = ExtResource( 4 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+autoplay = true
+
+[connection signal="pressed" from="Quit" to="." method="_on_Quit_pressed"]
+[connection signal="pressed" from="New" to="." method="_on_New_pressed"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_AudioStreamPlayer2D_finished"]

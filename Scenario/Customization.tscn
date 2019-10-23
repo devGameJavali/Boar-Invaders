@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenario/Customization.gd" type="Script" id=1]
 [ext_resource path="res://Ship/Ship.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenario/ColorPicker.gd" type="Script" id=3]
 [ext_resource path="res://Soudtrack/Cold-Moon_Looping.wav" type="AudioStream" id=4]
+[ext_resource path="res://Scenario/Menus/Custom.png" type="Texture" id=5]
 
 [node name="Customization" type="Node2D"]
 pause_mode = 2
@@ -14,18 +15,22 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+margin_left = -75.0
+margin_top = 33.0
+margin_right = -75.0
+margin_bottom = 33.0
 
 [node name="Ship" parent="Container" instance=ExtResource( 2 )]
 pause_mode = 1
 editor/display_folded = true
-position = Vector2( 375, 522 )
+position = Vector2( 840, 526 )
 scale = Vector2( 10, 10 )
 
 [node name="Container" type="Container" parent="Container"]
-margin_left = 800.0
-margin_top = 25.0
-margin_right = 840.0
-margin_bottom = 65.0
+margin_left = 1265.0
+margin_top = 29.0
+margin_right = 1305.0
+margin_bottom = 69.0
 
 [node name="ColorPicker" type="ColorPicker" parent="Container/Container"]
 margin_left = 4.0
@@ -35,17 +40,17 @@ margin_bottom = 4.0
 script = ExtResource( 3 )
 
 [node name="Button" type="Button" parent="Container"]
-margin_left = 814.0
-margin_top = 519.0
-margin_right = 1056.0
-margin_bottom = 594.0
+margin_left = 1279.0
+margin_top = 523.0
+margin_right = 1521.0
+margin_bottom = 598.0
 text = "Set Default"
 
 [node name="Button2" type="Button" parent="Container"]
-margin_left = 814.0
-margin_top = 625.0
-margin_right = 1056.0
-margin_bottom = 700.0
+margin_left = 1279.0
+margin_top = 629.0
+margin_right = 1521.0
+margin_bottom = 704.0
 text = "READY"
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -55,6 +60,11 @@ current = true
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 autoplay = true
+
+[node name="Title" type="Sprite" parent="."]
+position = Vector2( 125, 150 )
+texture = ExtResource( 5 )
+
 [connection signal="color_changed" from="Container/Container/ColorPicker" to="Container/Container/ColorPicker" method="_on_ColorPicker_color_changed"]
 [connection signal="pressed" from="Container/Button" to="Container/Container/ColorPicker" method="_on_Button_pressed"]
 [connection signal="pressed" from="Container/Button2" to="Container/Container/ColorPicker" method="_on_Button2_pressed"]

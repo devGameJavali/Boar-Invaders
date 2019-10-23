@@ -21,7 +21,8 @@ func _on_Bomb_body_entered(body):
 	if not body.is_in_group("player") and not body.is_in_group("capital"):
 		if body.is_in_group("turret"):
 			body.damage(1000)
-		if body.is_in_group("bullet"):
+			explode()
+		elif body.is_in_group("bullet"):
 			body.queue_free()
 		elif exploded == true:
 			body.queue_free()

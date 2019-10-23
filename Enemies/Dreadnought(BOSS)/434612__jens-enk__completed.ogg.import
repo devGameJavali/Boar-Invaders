@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/434612__jens-enk__completed.ogg-8aa8e806e766e9e4056bd3b14f41d19a.oggstr"
+
+[deps]
+
+source_file="res://Enemies/Dreadnought(BOSS)/434612__jens-enk__completed.ogg"
+dest_files=[ "res://.import/434612__jens-enk__completed.ogg-8aa8e806e766e9e4056bd3b14f41d19a.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

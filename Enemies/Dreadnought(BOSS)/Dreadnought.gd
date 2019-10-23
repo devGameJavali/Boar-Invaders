@@ -1,8 +1,8 @@
 extends Node2D
 var ammno = preload("res://Enemies/Dreadnought(BOSS)/Ammno.tscn")
 var turret = preload("res://Enemies/Dreadnought(BOSS)/Turret1.tscn")
-var armor = 20
-var life = 100
+var armor = 130
+var life = 1000
 
 var i = 0
 var T = [1,1,1]
@@ -25,7 +25,7 @@ func _on_Timer_timeout():
 
 
 func _capitalDamage():
-	life-=2
+	life-=1
 	$"Node2D/TextureProgress".value = life
 	if life<1:
 		queue_free()

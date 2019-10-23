@@ -7,11 +7,11 @@ var id
 
 func _ready():
 	id = int(name.right(6))
-	print($"../..".armor)
 	if $"../..".armor<1:
 		$"CollisionShape2D".disabled = false
 	$Node2D/TextureProgress.max_value = life
 	$Node2D/TextureProgress.value = life
+
 func _physics_process(delta):
 	var mouse = get_global_mouse_position()
 	var rot = rad2deg(get_angle_to(target.global_position))
@@ -24,7 +24,6 @@ func _physics_process(delta):
 			rotation_degrees-=0.5
 		else:
 			rotation_degrees+=0.5
-
 
 
 func shoot():
@@ -63,9 +62,8 @@ func _LeftShootBack(object, key):
 	
 	
 func damage(dam):
-	life-=1
+	life-=dam
 	$Node2D/TextureProgress.value = life
 	if life<1:
-		print(id)
 		$"../..".T[id-1]=0
 		queue_free()

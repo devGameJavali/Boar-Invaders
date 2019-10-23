@@ -63,6 +63,7 @@ margin_left = -27.0745
 margin_top = 27.712
 margin_right = 24.9255
 margin_bottom = 39.712
+
 [connection signal="tween_completed" from="Right/Tween" to="." method="_RightShootBack"]
 [connection signal="tween_completed" from="Left/Tween" to="." method="_LeftShootBack"]
 [connection signal="timeout" from="SecondShoot" to="." method="SecondShoot"]

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/434612__jens-enk__completed.ogg-41404d8219ce4a214e515d339ec234fb.oggstr"
+
+[deps]
+
+source_file="res://Scenario/WinGame/434612__jens-enk__completed.ogg"
+dest_files=[ "res://.import/434612__jens-enk__completed.ogg-41404d8219ce4a214e515d339ec234fb.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

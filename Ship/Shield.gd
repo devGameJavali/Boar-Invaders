@@ -17,10 +17,12 @@ func _on_Shield_body_entered(body):
 		var damage = 40
 		if body.is_in_group("dreadnought"):
 			damage = 100
+		if Root.energy<damage:
+			return
 		body.queue_free()
 		if active == true:
-			$"..".energy -= damage
-			emit_signal("update_energy",$"..".energy)
+			Root.energy -= damage
+			emit_signal("update_energy",Root.energy)
 			#print(Root.energy)
 			
 

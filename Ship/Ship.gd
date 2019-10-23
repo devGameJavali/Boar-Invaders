@@ -21,7 +21,7 @@ var repT = 3
 var velocity:Vector2
 
 func _ready():
-	$"Interface/Container/VSplitContainer/Repairs/Label".text = str(repT)
+	$"Interface/Container/VSplitContainer/Node2D/Label".text = str(repT)
 	take_damage(0)
 	$Shield.emit_signal("update_energy",energy)
 	if $"../..".name == "Customization":
@@ -115,7 +115,7 @@ func inertia(vel):
 
 
 func shoot(pos):
-	Root.energy -=5
+	Root.energy -=0.5
 	var shoot = bullet.instance()
 	get_node("..").add_child(shoot)
 	shoot.position = pos
@@ -144,9 +144,9 @@ func _1_sec_function():
 	if i ==16:
 		i = 0
 	if  Root.energy<996:
-		Root.energy += 5
+		Root.energy += 1
 	if $"Shield".active == true:
-		Root.energy -=5.5
+		Root.energy -=1.5
 	$Interface.update_shield(Root.energy)
 	pass # Replace with function body.
 
