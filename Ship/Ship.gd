@@ -171,9 +171,9 @@ func take_damage(dam):
 	if life<0:
 		#get_tree().change_scene("res://Game Over.tscn")
 		print("morreu")
-	elif life<100:
-		if SPEED == 400:
-			SPEED = SPEED/2
+	#elif life<100:
+		#if SPEED == 400:
+			#SPEED = SPEED/2
 
 
 

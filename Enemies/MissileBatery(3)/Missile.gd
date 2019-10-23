@@ -1,8 +1,8 @@
 extends Area2D
 
-export var speed = 350
-export var steer_force = 35.0
-const attack = 15
+export var speed = 330
+export var steer_force = 33.0
+const attack = 20
 
 var velocity = Vector2.ZERO
 var acceleration = Vector2.ZERO

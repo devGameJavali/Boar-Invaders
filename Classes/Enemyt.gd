@@ -3,7 +3,7 @@ class_name enemy
 var bul = preload("res://Enemies/Invader/ene_bull.tscn")
 var id
 var root
-var life = 3
+var life = 5
 func _ready():
 	$TextureProgress.value = life
 	$TextureProgress.max_value = life

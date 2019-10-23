@@ -1,4 +1,5 @@
 extends Node2D
+export var size:Vector2
 var move:int = 32
 var act:int = 1
 var side:int = 0 #0=right 1=left

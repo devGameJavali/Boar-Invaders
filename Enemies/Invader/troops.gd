@@ -1,11 +1,12 @@
 extends Node2D
 
 var ship = preload("res://Enemies/Invader/Invader.tscn")
-var size = Vector2(7,1)
+var size
 var idList:Array = []
 func _ready():
+	size = $"..".size
 	spawn_squad()
-	
+
 func spawn_squad():
 	for i in range(0,size.x):
 		idList.append([])

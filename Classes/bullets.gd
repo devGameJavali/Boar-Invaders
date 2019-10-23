@@ -1,13 +1,17 @@
 extends KinematicBody2D
 class_name  bullet
 var velocity:Vector2 = Vector2(0,600)
-var attack = 3
+var attack = 2
 
+func _ready():
+	print(get_parent().name)
+	if get_parent().name == "Doubles":
+		attack = 0.1
 func _physics_process(delta):
 	var body
 	body = move_and_collide(velocity*delta)
 	if(body):
-		if body.collider.is_in_group("bullet") or body.collider.is_in_group("enemy") :
+		if body.collider.is_in_group("bullet") or body.collider.is_in_group("enemy") or body.collider.is_in_group("limit") :
 			queue_free()
 		elif body.collider.is_in_group("block"):
 			body.collider.queue_free()

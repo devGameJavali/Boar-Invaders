@@ -1,9 +1,10 @@
 extends StaticBody2D
-var life = 3
+var life = 10
 var missile = preload("res://Enemies/MissileBatery(3)/Missile.tscn")
 var can_missile1 = true
 var can_missile2 = true
 
+export var active = false
 func _physics_process(delta):
 	if is_queued_for_deletion():
 		var a =$"../../..".get_children()
@@ -21,6 +22,8 @@ func damage(dam):
 		queue_free()
 	return true
 func _on_shooter_timeout():
+	if active == false:
+		return
 	if can_missile1 == true:
 		can_missile1 = false
 		var rocket = missile.instance()

@@ -1,5 +1,5 @@
 extends enemy
-
+var active = true
 
 func _ready():
 	life = 3
@@ -7,11 +7,13 @@ func _ready():
 
 
 func _on_shoot_timeout():
-	var action = randi()%12
+	if active ==false:
+		return
+	var action = randi()%10
 	if action ==4:
-		shoot($cL.get_global_transform()[2],root)
-		shoot($cR.get_global_transform()[2],root)
-		shoot($cM.get_global_transform()[2],root)
+		#shoot($cL.global_position,root)
+		#shoot($cR.global_position,root)
+		shoot($cM.global_position,root)
 	pass # Replace with function body.
 
 	
@@ -30,3 +32,14 @@ func _rightFire(s):
 func _hideFire():
 	$fireR.hide()
 	$fireL.hide()
+
+func _on_VisibilityNotifier2D_screen_entered():
+	print("activing")
+	active = true
+	pass # Replace with function body.
+
+
+func _on_VisibilityNotifier2D_screen_exited():
+	print("des")
+	active = false
+	pass # Replace with function body.

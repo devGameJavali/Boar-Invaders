@@ -13,6 +13,7 @@ scale = Vector2( 2.38889, 2.38889 )
 texture = ExtResource( 2 )
 
 [node name="TextEdit" type="TextEdit" parent="Sprite"]
+visible = false
 margin_left = -405.0
 margin_top = 37.0
 margin_right = -133.0

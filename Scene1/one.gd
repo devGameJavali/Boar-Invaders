@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -13,16 +13,14 @@ func _ready():
 #	pass
 
 
-func _on_AudioStreamPlayer2D_finished():
-	$AudioStreamPlayer2D.play()
+func _on_one2_area_entered(area):
+	
 	pass # Replace with function body.
 
 
-func _on_Quit_pressed():
-	get_tree().quit()
-	pass # Replace with function body.
-
-
-func _on_New_pressed():
-	get_tree().change_scene("res://Scenario/Customization.tscn")
+func _on_one2_body_entered(body):
+	print("now")
+	if body.name=="Ship":
+		for i in get_children():
+			i.active = true
 	pass # Replace with function body.
